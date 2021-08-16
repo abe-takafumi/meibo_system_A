@@ -86,9 +86,23 @@
         ?>
 
         <h1>社員名簿システム</h1>
-        <form method='post' action='.php'>
-            名前入力：<input type="text" name="name" size="40" maxlength="10"><br>
-            <select name="pref"><option value="0" selected="selected">都道府県を選択してください</option>
+        |<a href="./index.php" >トップページ</a>|
+        <a href="./entry.php">新規社員情報登録ページ</a>|<br>
+
+        <hr color="#00ff00" size="3">
+
+        <form method='post' action='.php' style='text-align:center'>
+            名前：<input type="text" name="name" size="30" maxlength="30">
+
+            性別：<select name="seibetu">
+                <option value="0" selected="selected">すべて</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
+
+            年齢：<input type="number" name="age"><br>
+
+            都道府県：<select name="pref"><option value="0" selected="selected">すべて</option>
                 <option value="1">北海道</option>
                 <option value="2">青森県</option>
                 <option value="3">岩手県</option>
@@ -136,28 +150,34 @@
                 <option value="45">宮崎県</option>
                 <option value="46">鹿児島県</option>
                 <option value="47">沖縄県</option>
+            </select>
+
+            部署：<select name="section_ID">
+                <option value="0" selected="selected">すべて</option>
+                <option value="1">第一事業部</option>
+                <option value="2">第二事業部</option>
+                <option value="3">営業</option>
+                <option value="4">総務</option>
+                <option value="5">人事</option>
+            </select>
+
+            役職：<select name="grade_ID">
+                <option value="0" selected="selected">すべて</option>
+                <option value="1">事業部長</option>
+                <option value="2">部長</option>
+                <option value="3">チームリーダー</option>
+                <option value="4">リーダー</option>
+                <option value="5">メンバー</option>
             </select><br>
 
-            <input type="radio" name="seibetu" checked="checked" value="1">男性<br>
-                <input type="radio" name="seibetu" value="2">女性<br>
-
-            <input type="text" name="name" size="5" maxlength="10"><br>
-
-            <input type="radio" name="section_ID" checked="checked" value="1">第一事業部<br>
-                <input type="radio" name="section_ID" value="2">第二事業部<br>
-                <input type="radio" name="section_ID" value="3">営業<br>
-                <input type="radio" name="section_ID" value="4">総務<br>
-                <input type="radio" name="section_ID" value="5">人事<br>
-
-            <input type="radio" name="grade_ID" checked="checked" value="1">事業部長<br>
-                <input type="radio" name="grade_ID" value="2">部長<br>
-                <input type="radio" name="grade_ID" value="2">チームリーダー<br>
-                <input type="radio" name="grade_ID" value="2">リーダー<br>
-                <input type="radio" name="grade_ID" value="2">メンバー<br>
+            <input type="submit" value="検索">
+            <input type="reset" value="リセット">
 
         </form>
 
-        <table border="1" style="border-collapse:collapse";>
+        <hr color="#00ff00" size="3">
+
+        <table border="1" style="border-collapse:collapse" align="center">
             <tr>
                 <th>社員ID</th>
                 <th>名前</th>
@@ -176,6 +196,7 @@
                 $sql->execute();
                 $result = $sql->fetchAll();
 
+                $i = 0;
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
                     echo "<td>" . $member['name'] . "</td>";
@@ -184,7 +205,9 @@
                     echo "<td>" . $member['age'] . "</td>";
                     echo "<td>" . $section_ID_array[$member['section_ID']] . "</td>";
                     echo "<td>" . $grade_ID_array[$member['grade_ID']] . "</td></tr>";
+                    $i = $i + 1;
                 }
+                echo "検索結果：" . $i ;
             ?>
         </table>
     </body>
