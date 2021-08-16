@@ -6,7 +6,6 @@
         <title>トップページ</title>
     </head>
     <body>
-
         <?php
             $DB_DSN = "mysql:host=localhost; dbname=tabe; charset=utf8";
             $DB_USER = "webaccess";
