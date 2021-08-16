@@ -91,7 +91,7 @@
 
         <hr color="#00ff00" size="3">
 
-        <form method='post' action='.php' style='text-align:center'>
+        <form method='post' action='index.php' style='text-align:center'>
             名前：<input type="text" name="name" size="30" maxlength="30">
 
             性別：<select name="seibetu">
@@ -190,8 +190,7 @@
 
             <?php
                 $query_str = "SELECT * FROM member WHERE 1";
-
-                echo $query_str;
+                $query_str;
                 $sql = $pdo->prepare($query_str);
                 $sql->execute();
                 $result = $sql->fetchAll();
@@ -199,7 +198,7 @@
                 $i = 0;
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
-                    echo "<td>" . $member['name'] . "</td>";
+                    echo "<td><a href='./detail01.php'>" . $member['name'] . "</a></td>";
                     echo "<td>" . $pref_array[$member['pref']] . "</td>";
                     echo "<td>" . $gender_array[$member['seibetu']] . "</td>";
                     echo "<td>" . $member['age'] . "</td>";
