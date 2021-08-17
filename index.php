@@ -195,6 +195,7 @@
                 $result = $sql->fetchAll();
 
                 $i = 0;
+                
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
             ?>
