@@ -66,6 +66,7 @@ $seibetu = array(
     '5'=>'メンバー',
 ?>
 
+
 <?php
 $section_ID = array(
     '1'=>'第一事業部',
