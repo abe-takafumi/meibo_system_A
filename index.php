@@ -99,7 +99,7 @@
                 <option value="2">女</option>
             </select>
 
-            年齢：<input type="number" name="age"><br>
+            年齢：<input type="text" name="age"><br>
 
             都道府県：<select name="pref"><option value="0" selected="selected">すべて</option>
                 <option value="1">北海道</option>
@@ -197,7 +197,12 @@
                 $i = 0;
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
-                    echo "<td><a href='./detail01.php'>" . $member['name'] . "</a></td>";
+            ?>
+                <td><form method="post" name="form1" action="detail01.php">
+                    <input type="hidden" name="memberID" value="<?php echo $member["member_ID"]; ?>">
+                    <a href="javascript:form1.submit()"><?php echo $member["name"]; ?></a>
+                </form></td>
+            <?php
                     echo "<td>" . $pref_array[$member['pref']] . "</td>";
                     echo "<td>" . $gender_array[$member['seibetu']] . "</td>";
                     echo "<td>" . $member['age'] . "</td>";
