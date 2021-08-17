@@ -95,37 +95,38 @@
         <p style="text-align:right"> <a href="./index.php">トップ画面</a>
         <a style="text-align:right" href="./entry01.php">新規登録</a></p>
         <hr>
-        <table border="1" >
-            <form action="result.php" method="post">
+        <form action="entry_update01.php" method="post">
+            <table border="1" >
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
                 </tr>
                 <tr>
                    <td>名前 </td>
-                   <td ><input type="text" name="name" value="<?php echo $result['name'] ?>"></td>
+                   <td ><input type="text" id="name" value="<?php echo $result['name'] ?>"></td>
                 </tr>
 
                 <tr>
                     <td>出身地 </td>
                     <td>
                         <select name='pref'>
-                        <?php
-                            //include('kyotu-deta.php');
-                            $name='name="pref"';
-                            $selected='"selected"';
-                            foreach ($pref_array as $key => $value){
-                                if($result['pref'] == $key ){
-                                    echo "<option ". $name ."selected=". $selected."value=". $key .">" . $value . "</option>";
-                                }else{
-                                    echo "<option ". $name ."value=". $key .";>" . $value . "</option>";
+                            <?php require 'kyotu-deta.php'; ?>
+                            <?php
+                                $name='id="pref"';
+                                $selected='"selected"';
+                                foreach ($pref as $key => $value){
+                                    if($result['pref'] == $key ){
+                                        echo "<option ". $name ."selected=". $selected."value=". $key .">" . $value . "</option>";
+                                    }else{
+                                        echo "<option ". $name ."value=". $key .";>" . $value . "</option>";
+                                    }
                                 }
-                            }
-                         ?>
+                            ?>
+                        </select>
                     </td>
                </tr>
                 <tr>
                     <td>年齢 </td>
-                    <td ><input type="text" name="age" value="<?php echo $result['age'] ?>">歳</td>
+                    <td ><input type="text" id="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                <tr>
                    <td>性別</td>
@@ -178,10 +179,39 @@
                             }
                         ?>
                    </td>
-               </tr>
+                </tr>
+            </table>
 
-               <p style="text-align:right"> <input type="submit"><input type="reset"></p>
-           </form>
-        </table>
+            <input type="submit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
+            <input type="reset">
+            <script language="javascript" type="text/javascript">
+                const name = document.getElementById('name');
+                const pref = document.getElementById('pref');
+                const age = document.getElementById('age');
+                const button1 = document.getElementById('button1');
+                const div1 = document.getElementById('div1');
+
+                const func1 = () => {
+                    if(name.value.length == 0 ) {
+                        alert('名前は必須です');
+                    }else if(pref.value.length == 0 ) {
+                        alert('都道府県は必須です');
+                    }else if(age.value.length == 0){
+                        alert('年齢は必須です');
+                    }else if(isNaN(age.value)){
+                        alert('数値を入力してください');
+                    }else if(age.value >= 100){
+                        alert('1-99の範囲で入力してください');
+                    }else {
+                        if (window.confirm('送信してもよろしいですか？')) {
+                            div1.innerText = `Name:${name.value}、Mail:${mail.value}で送信しました`;
+                        }else{
+
+                        }
+                    }
+                };
+            </script>
+       </form>
+
     </body>
 </html>
