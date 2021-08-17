@@ -188,33 +188,35 @@
             </tr>
 
             <?php
+                $where_str = "";
                 $query_str = "SELECT * FROM member WHERE 1";
 
                 if(isset($_GET['name']) && !empty($_GET['name'])){
-                    $query_str .= "AND name LIKE "%" . $_GET['name'] . "%" ";
+                    $where_str .= "AND name LIKE "%" . $_GET['name'] . "%" ";
                 }
 
                 if($_GET['seibetu'] == !0 ){
-                    $query_str .= "AND seibetu LIKE $_GET['seibetu']";
+                    $where_str .= "AND seibetu LIKE $_GET['seibetu']";
                 }
 
                 if(isset($_GET['age']) && !empty($_GET['age'])){
-                    $query_str .= "AND age LIKE "%" . $_GET['age'] . "%" ";
+                    $where_str .= "AND age LIKE "%" . $_GET['age'] . "%" ";
                 }
 
                 if($_GET['pref'] == !0 ){
-                    $query_str .= "AND pref LIKE $_GET['pref']";
+                    $where_str .= "AND pref LIKE $_GET['pref']";
                 }
 
                 if($_GET['section_ID'] == !0 ){
-                    $query_str .= "AND section_ID LIKE $_GET['section_ID']";
+                    $where_str .= "AND section_ID LIKE $_GET['section_ID']";
                 }
 
                 if($_GET['grade_ID'] == !0 ){
-                    $query_str .= "AND grade_ID LIKE $_GET['grade_ID']";
+                    $where_str .= "AND grade_ID LIKE $_GET['grade_ID']";
                 }
 
-                echo $query_str;
+                echo $where_str;
+                $query_str .= $where_str;
                 $sql = $pdo->prepare($query_str);
                 $sql->execute();
                 $result = $sql->fetchAll();
