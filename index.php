@@ -86,11 +86,11 @@
 
         <h1>社員名簿システム</h1>
         |<a href="./index.php" >トップページ</a>|
-        <a href="./entry.php">新規社員情報登録ページ</a>|<br>
+        <a href="./entry01.php">新規社員情報登録ページ</a>|<br>
 
         <hr color="#00ff00" size="3">
 
-        <form method='post' action='index.php' style='text-align:center'>
+        <form method='get' action='index.php'>
             名前：<input type="text" name="name" size="30" maxlength="30">
 
             性別：<select name="seibetu">
@@ -188,21 +188,45 @@
             </tr>
 
             <?php
+                $where_str = "";
                 $query_str = "SELECT * FROM member WHERE 1";
-                $query_str;
+
+                if(isset($_GET['name']) && !empty($_GET['name'])){
+                    $where_str .= "AND name LIKE '%" . $_GET['name'] . "%' ";
+                }
+
+                if($_GET['seibetu'] == !0 ){
+                    $where_str .= "AND seibetu = $_GET['seibetu']";
+                }
+
+                if(isset($_GET['age']) && !empty($_GET['age'])){
+                    $where_str .= "AND age = $_GET['age']";
+                }
+
+                if($_GET['pref'] == !0 ){
+                    $where_str .= "AND pref = $_GET['pref']";
+                }
+
+                if($_GET['section_ID'] == !0 ){
+                    $where_str .= "AND section_ID = $_GET['section_ID']";
+                }
+
+                if($_GET['grade_ID'] == !0 ){
+                    $where_str .= "AND grade_ID = $_GET['grade_ID']";
+                }
+
+                echo $where_str;
+                $query_str .= $where_str;
                 $sql = $pdo->prepare($query_str);
                 $sql->execute();
                 $result = $sql->fetchAll();
 
                 $i = 0;
-                
+
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
             ?>
-                <td><form method="post" name="form1" action="detail01.php">
-                    <input type="hidden" name="memberID" value="<?php echo $member["member_ID"]; ?>">
-                    <a href="javascript:form1.submit()"><?php echo $member["name"]; ?></a>
-                </form></td>
+                <td><a href="./detail01.php?member_ID=<?php echo $member["member_ID"]?>"><?php echo $member["name"]; ?></a></td>
             <?php
                     echo "<td>" . $pref_array[$member['pref']] . "</td>";
                     echo "<td>" . $gender_array[$member['seibetu']] . "</td>";
