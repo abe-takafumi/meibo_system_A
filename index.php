@@ -190,29 +190,29 @@
             <?php
                 $where_str = "";
                 $query_str = "SELECT * FROM member WHERE 1";
-名前は部分一致
+
                 if(isset($_GET['name']) && !empty($_GET['name'])){
                     $where_str .= "AND name LIKE '%" . $_GET['name'] . "%' ";
                 }
-全部一致
+
                 if($_GET['seibetu'] == !0 ){
                     $where_str .= "AND seibetu = $_GET['seibetu']";
                 }
 
                 if(isset($_GET['age']) && !empty($_GET['age'])){
-                    $where_str .= "AND age LIKE $_GET['age']";
+                    $where_str .= "AND age = $_GET['age']";
                 }
 
                 if($_GET['pref'] == !0 ){
-                    $where_str .= "AND pref LIKE $_GET['pref']";
+                    $where_str .= "AND pref = $_GET['pref']";
                 }
 
                 if($_GET['section_ID'] == !0 ){
-                    $where_str .= "AND section_ID LIKE $_GET['section_ID']";
+                    $where_str .= "AND section_ID = $_GET['section_ID']";
                 }
 
                 if($_GET['grade_ID'] == !0 ){
-                    $where_str .= "AND grade_ID LIKE $_GET['grade_ID']";
+                    $where_str .= "AND grade_ID = $_GET['grade_ID']";
                 }
 
                 echo $where_str;
