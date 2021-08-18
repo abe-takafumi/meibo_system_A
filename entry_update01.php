@@ -3,7 +3,19 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>新規社員情報登録</title>
+        <style type="text/css">
+            table {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            th { width: 80px; }
+            td { width: 280px; }
+            input type=submit {
+                margin-left: auto;
+            }
+        </style>
+    <title>社員情報登録画面</title>
+
     </head>
     <body>
         <?php
@@ -12,10 +24,10 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            //メンバー $_POST['member_ID']
-            $query_str = "SELECT * FROM member WHERE member.member_ID = 60";   // 実行するSQL文を作成して変数に保持
+            //メンバー
+            $query_str = "SELECT * FROM member WHERE member.member_ID = :id";
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-            $sql->execute();                      // SQLを実行する
+            $sql->execute(array(':id' => $_POST["member_ID"]));                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
 
             $pref_array = array(
@@ -91,22 +103,22 @@
             );
         ?>
 
-        <h1>新規登録</h1>
+        <h1>社員情報編集</h1>
         <p style="text-align:right"> <a href="./index.php">トップ画面</a>
         <a style="text-align:right" href="./entry01.php">新規登録</a></p>
         <hr>
-        <form action="entry_update01.php" method="post">
+        <form action="edit.php" method="post">
             <table border="1" >
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
                 </tr>
                 <tr>
-                   <td>名前 </td>
-                   <td ><input type="text" id="name" value="<?php echo $result['name'] ?>"></td>
+                   <th>名前 </th>
+                   <td ><input type="text" name="name" id="name" value="<?php echo $result['name'] ?>"></td>
                 </tr>
 
                 <tr>
-                    <td>出身地 </td>
+                    <th>出身地 </th>
                     <td>
                         <select name='pref'>
                             <?php require 'kyotu-deta.php'; ?>
@@ -117,7 +129,7 @@
                                     if($result['pref'] == $key ){
                                         echo "<option ". $name ."selected=". $selected."value=". $key .">" . $value . "</option>";
                                     }else{
-                                        echo "<option ". $name ."value=". $key .";>" . $value . "</option>";
+                                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
                                     }
                                 }
                             ?>
@@ -125,11 +137,11 @@
                     </td>
                </tr>
                 <tr>
-                    <td>年齢 </td>
-                    <td ><input type="text" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                    <th>年齢 </th>
+                    <td ><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                <tr>
-                   <td>性別</td>
+                   <th>性別</th>
                    <td >
                        <?php
                             $radio='"radio"';
@@ -147,43 +159,47 @@
                   </td>
                </tr>
                <tr>
-                   <td>所属部署</td>
+                   <th>所属部署</th>
                     <td >
                         <?php
                             $radio='"radio"';
-                            $section_name='"section_name"';
+                            $section_ID='"section_ID"';
                             $checked='"checked"';
                             foreach ($section_ID_array as $key => $value){
                                 if($result['section_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $section_name ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $section_name ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
                    </td>
                </tr>
                <tr>
-                   <td>役職</td>
+                   <th>役職</th>
                     <td>
                         <?php
                             $radio='"radio"';
-                            $grade_name='"grade_name"';
+                            $grade_ID='"grade_ID"';
                             $checked='"checked"';
                             foreach ($grade_ID_array as $key => $value){
                                 if($result['grade_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $grade_name ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $grade_name ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
                    </td>
                 </tr>
             </table>
-
-            <input type="submit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
-            <input type="reset">
+            <p style="text-align:right">
+                <input type="submit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
+                <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
+            </p>
+            <p style="text-align:right">
+                <input type="reset">
+            </p>
             <script language="javascript" type="text/javascript">
                 const name = document.getElementById('name');
                 const pref = document.getElementById('pref');
@@ -204,13 +220,14 @@
                         alert('1-99の範囲で入力してください');
                     }else {
                         if (window.confirm('送信してもよろしいですか？')) {
-                            div1.innerText = `Name:${name.value}、Mail:${mail.value}で送信しました`;
+
                         }else{
 
                         }
                     }
                 };
             </script>
+            <p></p>
        </form>
 
     </body>
