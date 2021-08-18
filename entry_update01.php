@@ -12,7 +12,7 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            //メンバー $_POST['member_ID']
+            //メンバー $_GET['member_ID']
             $query_str = "SELECT * FROM member WHERE member.member_ID = 60";   // 実行するSQL文を作成して変数に保持
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する
@@ -95,14 +95,15 @@
         <p style="text-align:right"> <a href="./index.php">トップ画面</a>
         <a style="text-align:right" href="./entry01.php">新規登録</a></p>
         <hr>
-        <form action="entry_update01.php" method="post">
+        <form action="edit.php" method="post">
+            <input type="hidden" name="member_ID" value="<?php $result['member_ID'] ?>">
             <table border="1" >
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
                 </tr>
                 <tr>
                    <td>名前 </td>
-                   <td ><input type="text" id="name" value="<?php echo $result['name'] ?>"></td>
+                   <td ><input type="text" name="name" id="name" value="<?php echo $result['name'] ?>"></td>
                 </tr>
 
                 <tr>
@@ -126,7 +127,7 @@
                </tr>
                 <tr>
                     <td>年齢 </td>
-                    <td ><input type="text" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                    <td ><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                <tr>
                    <td>性別</td>
@@ -151,13 +152,13 @@
                     <td >
                         <?php
                             $radio='"radio"';
-                            $section_name='"section_name"';
+                            $section_ID='"section_ID"';
                             $checked='"checked"';
                             foreach ($section_ID_array as $key => $value){
                                 if($result['section_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $section_name ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $section_name ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
@@ -168,13 +169,13 @@
                     <td>
                         <?php
                             $radio='"radio"';
-                            $grade_name='"grade_name"';
+                            $grade_ID='"grade_ID"';
                             $checked='"checked"';
                             foreach ($grade_ID_array as $key => $value){
                                 if($result['grade_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $grade_name ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $grade_name ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
@@ -182,7 +183,7 @@
                 </tr>
             </table>
 
-            <input type="submit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
+            <input type="submit" name="edit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
             <input type="reset">
             <script language="javascript" type="text/javascript">
                 const name = document.getElementById('name');
@@ -204,7 +205,7 @@
                         alert('1-99の範囲で入力してください');
                     }else {
                         if (window.confirm('送信してもよろしいですか？')) {
-                            div1.innerText = `Name:${name.value}、Mail:${mail.value}で送信しました`;
+
                         }else{
 
                         }
