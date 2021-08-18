@@ -30,7 +30,7 @@
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
             //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = $_POST['member_ID']";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member WHERE member.member_ID = 64";   // 実行するSQL文を作成して変数に保持
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
@@ -124,9 +124,23 @@
             <input type="submit" value="編集" >
         </form>
         <form method='post' action='delete.php' style="text-align:right">
-            <input type="submit" name="delete" value="削除">
-            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
-        </form>
+            <input type="submit" id="del" value="削除" onclick="func1()"><div id="div1"></div>
+            <input type="hidden" id="del" value="<?php echo $result['member_ID']; ?>" />
+            <script language="javascript" type="text/javascript">
+                const del = document.getElementById('del');
+                const div1 = document.getElementById('div1');
 
+                const func1 = () => {
+                    if(del.value == 0 ) {
+                        alert('名前は必須です');
+                    }else {
+                        if (window.confirm('送信してもよろしいですか？')) {
+                            div1.innerText = `Name:${del.value}で送信しました`;
+                        }else{
+                        }
+                    }
+                };
+            </script>
+        </form>
     </body>
 </html>
