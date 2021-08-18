@@ -196,11 +196,11 @@
                 }
 全部一致
                 if($_GET['seibetu'] == !0 ){
-                    $where_str .= "AND seibetu LIKE $_GET['seibetu']";
+                    $where_str .= "AND seibetu = $_GET['seibetu']";
                 }
-エスケープ文・全部一致
+
                 if(isset($_GET['age']) && !empty($_GET['age'])){
-                    $where_str .= "AND age LIKE "%" . $_GET['age'] . "%" ";
+                    $where_str .= "AND age LIKE $_GET['age']";
                 }
 
                 if($_GET['pref'] == !0 ){
