@@ -90,7 +90,7 @@
 
         <hr color="#00ff00" size="3">
 
-        <form method='get' action='index.php' style='text-align:center'>
+        <form method='get' action='index.php'>
             名前：<input type="text" name="name" size="30" maxlength="30">
 
             性別：<select name="seibetu">
