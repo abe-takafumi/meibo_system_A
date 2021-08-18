@@ -29,9 +29,9 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            $id = $_GET['member_ID'];
+            //$id = $_GET['member_ID'];
             //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member WHERE member.member_ID = 83";   // 実行するSQL文を作成して変数に保持
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
@@ -121,13 +121,30 @@
             ?>
         </table>
 
-        <form method='post' action='result01.php' style="text-align:right">
-            <input type="submit" value="編集" >
+        <form method='post' action='entry_update01.php' style="text-align:right">
+            <input type="submit" name="member_ID" value="編集" >
+            <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
         </form>
         <form method='post' action='delete.php' style="text-align:right">
-            <input type="submit" name="delete" value="削除">
-            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
+            <input type="submit" name="delete" id="del"   value="削除" onclick="func1()"><div id="div1"></div>
+            <input type="hidden" name="delete" id="del" value="<?php echo $result['member_ID']; ?>" />
         </form>
+        <script language="javascript" type="text/javascript">
+            const del = document.getElementById('del');
+            const div1 = document.getElementById('div1');
+
+            const func1 = () => {
+                if(del.value.length == 0 ) {
+                    alert('名前は必須です');
+                }else {
+                    if (window.confirm('削除してもよろしいですか？')) {
+
+                    }else{
+
+                    }
+                }
+            };
+        </script>
 
     </body>
 </html>
