@@ -30,7 +30,7 @@
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
             //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = 66";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member WHERE member.member_ID = 65";   // 実行するSQL文を作成して変数に保持
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
