@@ -190,15 +190,15 @@
             <?php
                 $where_str = "";
                 $query_str = "SELECT * FROM member WHERE 1";
-
+名前は部分一致
                 if(isset($_GET['name']) && !empty($_GET['name'])){
-                    $where_str .= "AND name LIKE "%" . $_GET['name'] . "%" ";
+                    $where_str .= "AND name LIKE '%" . $_GET['name'] . "%' ";
                 }
-
+全部一致
                 if($_GET['seibetu'] == !0 ){
                     $where_str .= "AND seibetu LIKE $_GET['seibetu']";
                 }
-
+エスケープ文・全部一致
                 if(isset($_GET['age']) && !empty($_GET['age'])){
                     $where_str .= "AND age LIKE "%" . $_GET['age'] . "%" ";
                 }
