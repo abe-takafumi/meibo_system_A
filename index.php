@@ -189,39 +189,38 @@
 
             <?php
                 $where_str = "";
-                $query_str = "SELECT * FROM member WHERE 1";
+                $query_str = "SELECT * FROM member WHERE 1 ";
 
                 if(isset($_GET['name']) && !empty($_GET['name'])){
                     $where_str .= "AND name LIKE '%" . $_GET['name'] . "%' ";
                 }
 
                 if($_GET['seibetu'] == !0 ){
-                    $where_str .= "AND seibetu = $_GET['seibetu']";
+                    $where_str .= "AND seibetu = '". $_GET['seibetu'] . "' ";
                 }
 
                 if(isset($_GET['age']) && !empty($_GET['age'])){
-                    $where_str .= "AND age = $_GET['age']";
+                    $where_str .= "AND age = '". $_GET['age'] . "' ";
                 }
 
                 if($_GET['pref'] == !0 ){
-                    $where_str .= "AND pref = $_GET['pref']";
+                    $where_str .= "AND pref = '". $_GET['pref'] . "' ";
                 }
 
                 if($_GET['section_ID'] == !0 ){
-                    $where_str .= "AND section_ID = $_GET['section_ID']";
+                    $where_str .= "AND section_ID = '". $_GET['section_ID'] . "' ";
                 }
 
                 if($_GET['grade_ID'] == !0 ){
-                    $where_str .= "AND grade_ID = $_GET['grade_ID']";
+                    $where_str .= "AND grade_ID = '". $_GET['grade_ID'] . "' ";
                 }
 
-                echo $where_str;
                 $query_str .= $where_str;
+                echo $query_str;
                 $sql = $pdo->prepare($query_str);
                 $sql->execute();
                 $result = $sql->fetchAll();
-
-                $i = 0;
+                $cnt = count($result);
 
                 foreach($result as $member){
                     echo "<tr><td>" . $member['member_ID'] . "</td>";
@@ -233,9 +232,8 @@
                     echo "<td>" . $member['age'] . "</td>";
                     echo "<td>" . $section_ID_array[$member['section_ID']] . "</td>";
                     echo "<td>" . $grade_ID_array[$member['grade_ID']] . "</td></tr>";
-                    $i = $i + 1;
                 }
-                echo "検索結果：" . $i ;
+                echo "検索結果：" . $cnt . "件";
             ?>
         </table>
     </body>
