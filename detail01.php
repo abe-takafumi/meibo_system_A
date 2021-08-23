@@ -17,9 +17,9 @@
         <h1>社員名簿システム</h1>
         <p style="text-align:right">
             |
-            <a href="./hobby.html" style="text-align:right" >トップ画面</a>
+            <a href="./index.php" style="text-align:right" >トップ画面</a>
             |
-            <a href="./works.html" style="text-align:right">新規社員登録へ</a>
+            <a href="./entry01.php" style="text-align:right">新規社員登録へ</a>
             |
         </p>
         <hr>
@@ -29,9 +29,9 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            //$id = $_GET['member_ID'];
+            $id = $_GET['member_ID'];
             //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = 84";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
@@ -61,7 +61,7 @@
                 echo "<tr><th>出身地</th><td>" . $pref_array[$result['pref']] . "</td></tr>";
                 echo "<tr><th>性別</th><td>" . $gender_array[$result['seibetu']] . "</td></tr>";
                 echo "<tr><th>年齢</th><td>" . $result['age'] . "</td></tr>";
-                echo "<tr><th>所属部署ID</th><td>" . $res_sec['section_name'] . "</td></tr>";
+                echo "<tr><th>所属部署</th><td>" . $res_sec['section_name'] . "</td></tr>";
                 echo "<tr><th>役職</th><td>" . $res_gra['grade_name'] . "</td></tr>";
 
             ?>
