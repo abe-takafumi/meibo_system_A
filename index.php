@@ -61,13 +61,21 @@
             <?php
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
-                    echo '<option value="" selected="selected">すべて</option>';
-                    if(){
-                        
+                    echo '<option value="">すべて</option>';
+                    foreach ($section_ID_array as $key => $value){
+                        if($value == 'section_ID'){
+                            echo "<option ". $name ."value=". $key ."selected='selected'>" . $value . "</option>";
+                        }
+                        else{
+                            echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                        }
                     }
+                }
+                else{
                     echo '<option value="" selected="selected">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
                         echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                    }
                 }
             ?></select>
 
