@@ -18,26 +18,66 @@
         ?>
 
         <h1>社員名簿システム</h1>
-        |<a href="./index.php" >トップページ</a>|
-        <a href="./entry01.php">新規社員情報登録ページ</a>|<br>
+        <p style="text-align:right"> <a href="./index.php">トップ画面</a>
+        <a style="text-align:right" href="./entry01.php">新規登録</a></p>
 
         <hr color="#00ff00" size="3">
 
-        <form method='get' action='index.php'>
-            名前：<input type="text" name="name" size="30" maxlength="30">
 
-            性別：<select name="seibetu">
-                <option value="" selected="selected">すべて</option>
-                <option value="1">男</option>
-                <option value="2">女</option>
-            </select>
+        <form method='get' action='index.php'>
+            <?php
+                //検索した文字列や選択した内容を初期値として保存するためのif文
+                if(isset($_GET['name']) && !empty($_GET['name'])){
+                    echo '名前：<input type="text" name="name" size="30" maxlength="30" value="'.$_GET["name"] . '">';
+                }
+                else{
+                    echo '名前：<input type="text" name="name" size="30" maxlength="30">';
+                }
+
+                if(isset($_GET['seibetu']) && !empty($_GET['seibetu'])){
+                    if($_GET['seibetu'] == 1){
+                        echo '性別：<select name="seibetu">';
+                            echo '<option value="">すべて</option>';
+                            echo '<option value="1" selected="selected">男</option>';
+                            echo '<option value="2">女</option>';
+                        echo '</select>';
+                    }
+                    else{
+                        echo '性別：<select name="seibetu">';
+                            echo '<option value="">すべて</option>';
+                            echo '<option value="1">男</option>';
+                            echo '<option value="2" selected="selected">女</option>';
+                        echo '</select>';
+                    }
+                }
+                else{
+                    echo '性別：<select name="seibetu">';
+                        echo '<option value="" selected="selected">すべて</option>';
+                        echo '<option value="1">男</option>';
+                        echo '<option value="2">女</option>';
+                    echo '</select>';
+                }
+            ?>
 
             部署：<select name="section_ID">
             <?php
                 $name='name="section_ID"';
-                echo '<option value="" selected="selected">すべて</option>';
-                foreach ($section_ID_array as $key => $value){
-                    echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
+                    echo '<option value="">すべて</option>';
+                    foreach ($section_ID_array as $key => $value){
+                        if($value == 'section_ID'){
+                            echo "<option ". $name ."value=". $key ."selected='selected'>" . $value . "</option>";
+                        }
+                        else{
+                            echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                        }
+                    }
+                }
+                else{
+                    echo '<option value="" selected="selected">すべて</option>';
+                    foreach ($section_ID_array as $key => $value){
+                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                    }
                 }
             ?></select>
 
