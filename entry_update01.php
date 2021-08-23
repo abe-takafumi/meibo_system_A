@@ -107,7 +107,7 @@
         <p style="text-align:right"> <a href="./index.php">トップ画面</a>
         <a style="text-align:right" href="./entry01.php">新規登録</a></p>
         <hr>
-        <form action="edit.php" method="post">
+        <form method="post" action ="edit.php">
             <table border="1" >
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
@@ -220,7 +220,7 @@
                         alert('1-99の範囲で入力してください');
                     }else {
                         if (window.confirm('送信してもよろしいですか？')) {
-
+                            
                         }else{
 
                         }

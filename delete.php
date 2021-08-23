@@ -28,7 +28,7 @@
 
         ?>
         <p>
-            <a href="detail01.php">社員情報検索画面へ</a>
+            <a href="index.php">社員情報検索画面へ</a>
         </p>
     </body>
 </html>
