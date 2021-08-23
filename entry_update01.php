@@ -14,8 +14,16 @@
                 margin-left: auto;
             }
         </style>
-    <title>社員情報登録画面</title>
-
+        <title>社員情報登録画面</title>
+        <script type="text/javascript">
+            function check(){
+                if (window.confirm('送信してもよろしいですか？')) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <?php
@@ -35,7 +43,7 @@
         <p style="text-align:right"> <a href="./index.php">トップ画面</a>
         <a style="text-align:right" href="./entry01.php">新規登録</a></p>
         <hr>
-        <form method="post" action ="edit.php">
+        <form method="post" action ="edit.php" onsubmit="return check()">
             <table border="1" >
                 <?php require 'include/common.php'; ?>
                 <tr>
@@ -52,13 +60,11 @@
                         <select name='pref'>
 
                             <?php
-                                $name='id="pref"';
-                                $selected='"selected"';
                                 foreach ($pref_array as $key => $value){
                                     if($result['pref'] == $key ){
-                                        echo "<option ". $name ."selected=". $selected."value=". $key .">" . $value . "</option>";
+                                        echo "<option id='pref' selected='selected' value=". $key .">" . $value . "</option>";
                                     }else{
-                                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                                        echo "<option id='pref' value=". $key .">" . $value . "</option>";
                                     }
                                 }
                             ?>
@@ -73,16 +79,13 @@
                    <th>性別</th>
                    <td >
                        <?php
-                            $radio='"radio"';
-                            $seibetu='"seibetu"';
-                            $checked='"checked"';
                             foreach ($gender_array as $key => $value){
                                 if($key == 0){
 
                                 }else if($result['seibetu'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $seibetu ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='seibetu' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $seibetu ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='seibetu' value=". $key .">" . $value . "</label>";
                                 }
                             }
                        ?>
@@ -93,16 +96,13 @@
                    <th>所属部署</th>
                     <td >
                         <?php
-                            $radio='"radio"';
-                            $section_ID='"section_ID"';
-                            $checked='"checked"';
                             foreach ($section_ID_array as $key => $value){
                                 if($key == 0){
 
                                 }else if($result['section_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $section_ID ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='section_ID' value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
@@ -112,16 +112,13 @@
                    <th>役職</th>
                     <td>
                         <?php
-                            $radio='"radio"';
-                            $grade_ID='"grade_ID"';
-                            $checked='"checked"';
                             foreach ($grade_ID_array as $key => $value){
                                 if($key == 0){
 
                                 }else if($result['grade_ID'] == $key ){
-                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."checked=". $checked ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
-                                    echo "<label><input type=" . $radio . "name=" . $grade_ID ."value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='grade_ID' value=". $key .">" . $value . "</label>";
                                 }
                             }
                         ?>
@@ -129,40 +126,12 @@
                 </tr>
             </table>
             <p style="text-align:right">
-                <input type="submit" value="編集" id="button1" onclick="func1()"><div id="div1"></div>
+                <input type="submit" value="編集" onclick="check()">
                 <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
             </p>
             <p style="text-align:right">
                 <input type="reset">
             </p>
-            <script language="javascript" type="text/javascript">
-                const name = document.getElementById('name');
-                const pref = document.getElementById('pref');
-                const age = document.getElementById('age');
-                const button1 = document.getElementById('button1');
-                const div1 = document.getElementById('div1');
-
-                const func1 = () => {
-                    if(name.value.length == 0 ) {
-                        alert('名前は必須です');
-                    }else if(pref.value.length == 0 ) {
-                        alert('都道府県は必須です');
-                    }else if(age.value.length == 0){
-                        alert('年齢は必須です');
-                    }else if(isNaN(age.value)){
-                        alert('数値を入力してください');
-                    }else if(age.value >= 100){
-                        alert('1-99の範囲で入力してください');
-                    }else {
-                        if (window.confirm('送信してもよろしいですか？')) {
-
-                        }else{
-
-                        }
-                    }
-                };
-            </script>
-            <p></p>
        </form>
 
     </body>
