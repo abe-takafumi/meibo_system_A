@@ -23,8 +23,10 @@
 
         <hr color="#00ff00" size="3">
 
+
         <form method='get' action='index.php'>
             <?php
+                //検索した文字列や選択した内容を初期値として保存するためのif文
                 if(isset($_GET['name']) && !empty($_GET['name'])){
                     echo '名前：<input type="text" name="name" size="30" maxlength="30" value="'.$_GET["name"] . '">';
                 }
