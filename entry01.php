@@ -24,7 +24,7 @@
                                    <?php require './include/common.php'; ?>
                                    <?php
                                         $name='name="pref"';
-                                            foreach ($pref as $key => $value){
+                                            foreach ($pref_array as $key => $value){
                                                 echo "<option ". $name ."value=". $key .">" . $value ."</option>";
                                             }
                                    ?>
@@ -33,8 +33,15 @@
                             </tr>
                             <tr>
                                 <td>性別</td>
-                                <td ><label><input type="radio" name="seibetu" value="1">男</label>
-                                    <label><input type="radio" name="seibetu" value="2">女</label>
+                                <td >
+                                    <?php require './include/common.php'; ?>
+                                    <?php
+
+                                        $name='name="seibetu"';
+                                            foreach ($gender_array as $key => $value){
+                                                echo "<label><input type = 'radio' checked='checked' name='seibetu'value= '" . $key . "'>".$value." </label>";
+                                            }
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -45,7 +52,7 @@
                             </tr>
                             <tr>
                                <td>所属部署</td>
-                                <td ><label><input type="radio" name="section_name" value="1">第一事業部</label>
+                                <td ><label><input type="radio" name="section_name" value="1"checked="checked">第一事業部</label>
                                     <label><input type="radio" name="section_name" value="2">第二事業部</label>
                                     <label><input type="radio" name="section_name" value="3">営業</label>
                                     <label><input type="radio" name="section_name" value="4">総務</label>
@@ -54,7 +61,7 @@
                             </tr>
                             <tr>
                                <td>役職</td>
-                                <td><label><input type="radio" name="grade_name" value="1">事業部長</label>
+                                <td><label><input type="radio" name="grade_name" value="1"checked="checked">事業部長</label>
                                     <label><input type="radio" name="grade_name" value="2">部長</label>
                                     <label><input type="radio" name="grade_name" value="3">チームリーダー</label>
                                     <label><input type="radio" name="grade_name" value="4">リーダー</label>
