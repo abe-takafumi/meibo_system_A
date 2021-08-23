@@ -15,15 +15,6 @@
             }
         </style>
         <title>社員情報登録画面</title>
-        <script type="text/javascript">
-            function check(){
-                if (window.confirm('送信してもよろしいですか？')) {
-                    return true;
-                }else{
-                    return false;
-                }
-            }
-        </script>
     </head>
     <body>
         <?php
@@ -104,10 +95,10 @@
                                 }
                             }
                         ?>
-                   </td>
-               </tr>
-               <tr>
-                   <th>役職</th>
+                    </td>
+                </tr>
+                <tr>
+                    <th>役職</th>
                     <td>
                         <?php
                             foreach ($grade_ID_array as $key => $value){
@@ -124,12 +115,40 @@
                 </tr>
             </table>
             <p style="text-align:right">
-                <input type="submit" value="編集" onclick="check()">
+                <input type="submit" value="編集" >
                 <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
             </p>
             <p style="text-align:right">
                 <input type="reset">
             </p>
-       </form>
+        </form>
+        <script type="text/javascript">
+            const name = document.getElementById('name');
+            const pref = document.getElementById('pref');
+            const age = document.getElementById('age');
+
+            function check(){
+                if(name.value.length == 0){
+                    alert("名前を入力してください");
+                    return false;
+                }else if(pref.value.length == 0 ) {
+                    alert('都道府県は必須です');
+                    return false;
+                }else if(age.value.length == 0){
+                    alert('年齢は必須です');
+                    return false;
+                }else if(isNaN(age.value)){
+                    alert('数値を入力してください');
+                    return false;
+                }else if(age.value >= 100){
+                    alert('1-99の範囲で入力してください');
+                    return false;
+                }else if (window.confirm('送信してもよろしいですか？')) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>

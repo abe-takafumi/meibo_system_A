@@ -71,23 +71,18 @@
             <input type="submit" name="member_ID" value="編集" >
             <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
         </form>
-        <form method='post' action='delete.php' style="text-align:right">
-            <input type="submit" name="delete" id="del"   value="削除" onclick="func1()"><div id="div1"></div>
-            <input type="hidden" name="delete" id="del" value="<?php echo $result['member_ID']; ?>" />
+        <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
+            <input type="submit" name="delete" value="削除">
+            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
         </form>
-        <script language="javascript" type="text/javascript">
+        <script type="text/javascript">
             const del = document.getElementById('del');
-            const div1 = document.getElementById('div1');
 
-            const func1 = () => {
-                if(del.value.length == 0 ) {
-                    alert('名前は必須です');
-                }else {
-                    if (window.confirm('削除してもよろしいですか？')) {
-
-                    }else{
-
-                    }
+            function check(){
+                if (window.confirm('削除を行います。よろしいですか？')) {
+                    return true;
+                }else{
+                    return false;
                 }
             };
         </script>
