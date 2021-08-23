@@ -1,5 +1,5 @@
 <?php
-    $pref = array(
+    $pref_array = array(
         "0"=>'選択して下さい。',
         '1'=>'北海道',
         '2'=>'青森県',
@@ -51,7 +51,7 @@
     );
 ?>
 <?php
-    $seibetu = array(
+    $gender_array = array(
         '0'=>'選択してください',
         '1'=>'男性',
         '2'=>'女性'
@@ -59,7 +59,7 @@
  ?>
 
  <?php
-    $grade_ID = array(
+    $grade_ID_array = array(
         '0'=>'選択してください',
         '1'=>'事業部長',
         '2'=>'部長',
@@ -71,7 +71,7 @@
 
 
 <?php
-    $section_ID = array(
+    $section_ID_array = array(
         '0'=>'選択してください',
         '1'=>'第一事業部',
         '2'=>'第二事業部',
