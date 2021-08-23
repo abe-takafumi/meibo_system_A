@@ -81,7 +81,6 @@
                        <?php
                             foreach ($gender_array as $key => $value){
                                 if($key == 0){
-
                                 }else if($result['seibetu'] == $key ){
                                     echo "<label><input type='radio' name='seibetu' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
