@@ -31,7 +31,7 @@
                                     if($result['pref'] == $key ){
                                         echo "<option id='pref' selected='selected' value=". $key .">" . $value . "</option>";
                                     }else{
-                                        echo "<option id='pref' value=". $key .">" . $value . "</option>";
+                                        echo "<option id='pref'                     value=". $key .">" . $value . "</option>";
                                     }
                                 }
                             ?>
