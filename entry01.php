@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
         <?php require_once 'include/header.php'; ?>
+        
     <body>
         <?php require_once 'include/def.php'; ?>
             <table border="1"style="border-collapse:collapse" align="center" >
