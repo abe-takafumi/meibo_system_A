@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>新規社員情報登録</title>
-    </head>
+        <?php require_once 'include/header.php'; ?>
     <body>
-        <h1>新規登録</h1>
-        <p style="text-align:right"> |<a href="./index.php">トップ画面</a>|
-        <a style="text-align:right" href="./entry01.php">新規登録</a>|</p>
-            <?php
-                echo "<hr>";
-            ?>
+        <?php require_once 'include/def.php'; ?>
             <table border="1"style="border-collapse:collapse" align="center" >
-                <form action="result.php" method="post"onsubmit="return check()">
+                <form action="detail01.php" method="post"onsubmit="return check()">
                             <tr>
-                                <td>名前 </td>
+                                <th>名前 </th>
                                 <td ><input type="text" name="name" id=name value=""></td>
                             </tr>
                             <tr>
-                               <td>出身地 </td>
+                               <th>出身地 </th>
                                <td ><select name='pref'id=pref>
                                    <?php require './include/common.php'; ?>
                                    <?php
@@ -32,20 +23,20 @@
                                </td>
                             </tr>
                             <tr>
-                                <td>性別</td>
+                                <th>性別</th>
                                 <td >
                                     <label><input type="radio" name="seibetu" value="1" checked="checked">男</label>
                                     <label><input type="radio" name="seibetu" value="2">女</label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>年齢 </td>
+                                <th>年齢 </th>
                                     <td ><input type="number" name="age" id=age value="">歳</td>
                               </td>
 
                             </tr>
                             <tr>
-                               <td>所属部署</td>
+                               <th>所属部署</th>
                                 <td ><label><input type="radio" name="section_name" value="1"checked="checked">第一事業部</label>
                                     <label><input type="radio" name="section_name" value="2">第二事業部</label>
                                     <label><input type="radio" name="section_name" value="3">営業</label>
@@ -54,7 +45,7 @@
                                </td>
                             </tr>
                             <tr>
-                               <td>役職</td>
+                               <th>役職</th>
                                 <td><label><input type="radio" name="grade_name" value="1"checked="checked">事業部長</label>
                                     <label><input type="radio" name="grade_name" value="2">部長</label>
                                     <label><input type="radio" name="grade_name" value="3">チームリーダー</label>
@@ -76,7 +67,7 @@
                         if(name.value.length == 0){
                             alert("名前を入力してください");
                             return false;
-                        }else if(pref.value.length == 0 ) {
+                        }else if(pref.value== 0 ) {
                             alert('都道府県は必須です');
                             return false;
 
