@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>トップページ</title>
-    </head>
+    <?php require_once './include/header.php'; ?>
     <body>
         <?php
-            //DBのデータを参照する
-            $DB_DSN = "mysql:host=localhost; dbname=tabe; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
-
+            require_once './include/def.php';
             //共有フォルダを参照する
             require './include/common_no0.php';
         ?>
-
-        <h1>社員名簿システム</h1>
-        <p style="text-align:right"> <a href="./index.php">トップ画面</a>
-        <a style="text-align:right" href="./entry01.php">新規登録</a></p>
 
         <hr color="#00ff00" size="3">
 
@@ -65,7 +52,7 @@
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
                     echo '<option value="">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
-                        if($value == 'section_ID'){
+                        if($_GET['section_ID'] == $key){
                             echo "<option ". $name ."value=". $key ."selected='selected'>" . $value . "</option>";
                         }
                         else{
@@ -83,7 +70,7 @@
 
             役職：<select name="grade_ID">
             <?php
-                $name='name="section_ID"';
+                $name='name="grade_ID"';
                 echo '<option value="" selected="selected">すべて</option>';
                 foreach ($grade_ID_array as $key => $value){
                     echo "<option ". $name ."value=". $key .">" . $value . "</option>";
@@ -97,7 +84,7 @@
 
         <hr color="#00ff00" size="3">
 
-        <table border="1" style="border-collapse:collapse" align="center">
+        <table style="border-collapse:collapse;" border="1">
             <tr>
                 <th>社員ID</th>
                 <th>名前</th>
