@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <style type="text/css">
-            table {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            th { width: 80px; }
-            td { width: 450px; }
-            input type=submit {
-                margin-left: auto;
-            }
-        </style>
-        <title>社員情報登録画面</title>
-    </head>
+    <?php require_once 'include/header.php'; ?>
     <body>
         <?php
-            $DB_DSN = "mysql:host=localhost; dbname=tabe; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
-
+            require_once 'include/def.php';
             //メンバー
             $query_str = "SELECT * FROM member WHERE member.member_ID = :id";
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute(array(':id' => $_POST["member_ID"]));                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
         ?>
-
-        <h1>社員情報編集</h1>
-        <p style="text-align:right"> <a href="./index.php">トップ画面</a>
-        <a style="text-align:right" href="./entry01.php">新規登録</a></p>
-        <hr>
-        <form method="post" action ="edit.php" onsubmit="return check()">
+        <form method="post" action ="detail01.php" onsubmit="return check()">
             <table border="1" >
-                <?php require 'include/common.php'; ?>
+                <?php require 'include/common_no0.php'; ?>
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
                 </tr>
@@ -71,8 +47,7 @@
                    <td >
                        <?php
                             foreach ($gender_array as $key => $value){
-                                if($key == 0){
-                                }else if($result['seibetu'] == $key ){
+                                if($result['seibetu'] == $key ){
                                     echo "<label><input type='radio' name='seibetu' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
                                     echo "<label><input type='radio' name='seibetu' value=". $key .">" . $value . "</label>";
@@ -86,9 +61,7 @@
                     <td >
                         <?php
                             foreach ($section_ID_array as $key => $value){
-                                if($key == 0){
-
-                                }else if($result['section_ID'] == $key ){
+                                if($result['section_ID'] == $key ){
                                     echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
                                     echo "<label><input type='radio' name='section_ID' value=". $key .">" . $value . "</label>";
@@ -102,9 +75,7 @@
                     <td>
                         <?php
                             foreach ($grade_ID_array as $key => $value){
-                                if($key == 0){
-
-                                }else if($result['grade_ID'] == $key ){
+                                if($result['grade_ID'] == $key ){
                                     echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
                                     echo "<label><input type='radio' name='grade_ID' value=". $key .">" . $value . "</label>";
@@ -128,19 +99,16 @@
             const age = document.getElementById('age');
 
             function check(){
-                if(name.value.length == 0){
+                if(name.value == ""){
                     alert("名前を入力してください");
                     return false;
-                }else if(pref.value.length == 0 ) {
-                    alert('都道府県は必須です');
-                    return false;
-                }else if(age.value.length == 0){
+                }else if(age.value == ""){
                     alert('年齢は必須です');
                     return false;
                 }else if(isNaN(age.value)){
-                    alert('数値を入力してください');
+                    alert('年齢欄に半角の数値を入力してください');
                     return false;
-                }else if(age.value >= 100){
+                }else if(age.value >= 100 || age.value < 1){
                     alert('1-99の範囲で入力してください');
                     return false;
                 }else if (window.confirm('送信してもよろしいですか？')) {

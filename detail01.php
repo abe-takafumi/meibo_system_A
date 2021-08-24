@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <style type="text/css">
-            table {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            th { width: 80px; }
-            td { width: 280px; }
-        </style>
-        <title>社員情報詳細画面</title>
-    </head>
+    <?php require_once 'include/header.php'; ?>
     <body>
-        <h1>社員名簿システム</h1>
-        <p style="text-align:right">
-            |
-            <a href="./index.php" style="text-align:right" >トップ画面</a>
-            |
-            <a href="./entry01.php" style="text-align:right">新規社員登録へ</a>
-            |
-        </p>
-        <hr>
         <?php
-            $DB_DSN = "mysql:host=localhost; dbname=tabe; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+            require_once 'include/def.php';
+            if(empty($_GET['member_ID'])){
+                $stmt = $pdo->prepare('UPDATE member SET name = :name, pref = :pref , seibetu = :seibetu , age = :age , section_ID = :section_ID , grade_ID = :grade_ID WHERE member.member_ID = :id');
+                $stmt->execute(array(':name' => $_POST['name'], ':pref' => $_POST['pref'], ':seibetu' => $_POST['seibetu'],
+                ':age' => $_POST['age'], ':section_ID' => $_POST['section_ID'], ':grade_ID' => $_POST['grade_ID'], ':id' => $_POST['member_ID']));
 
-            $id = $_GET['member_ID'];
-            //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
-            $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-            $sql->execute();                      // SQLを実行する
-            $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
+                $query_str = "SELECT * FROM member WHERE member.member_ID = :id";
+                $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+                $sql->execute(array(':id' => $_POST["member_ID"]));
 
+            }else{
+
+                $id = $_GET['member_ID'];
+                $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
+                $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+                $sql->execute();
+
+            }
+
+            $result = $sql->fetch();  // 実行結果を取得して$resultに代入する
 
             $sec_id = $result['section_ID'];
             $gra_id = $result['grade_ID'];
@@ -52,8 +39,8 @@
             $sql_gra->execute();                      // SQLを実行する
             $res_gra = $sql_gra->fetch();          // 実行結果を取得して$resultに代入する
         ?>
-        <table  border="1" >
 
+        <table  border="1" >
             <?php
                 require 'include/common.php';
                 echo "<tr><th>社員ID</th><td>" . $result['member_ID'] . "</td></tr>";
@@ -63,7 +50,6 @@
                 echo "<tr><th>年齢</th><td>" . $result['age'] . "</td></tr>";
                 echo "<tr><th>所属部署</th><td>" . $res_sec['section_name'] . "</td></tr>";
                 echo "<tr><th>役職</th><td>" . $res_gra['grade_name'] . "</td></tr>";
-
             ?>
         </table>
 
@@ -71,13 +57,14 @@
             <input type="submit" name="member_ID" value="編集" >
             <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
         </form>
+
         <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
             <input type="submit" name="delete" value="削除">
             <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
         </form>
+
         <script type="text/javascript">
             const del = document.getElementById('del');
-
             function check(){
                 if (window.confirm('削除を行います。よろしいですか？')) {
                     return true;
@@ -86,6 +73,5 @@
                 }
             };
         </script>
-
     </body>
 </html>
