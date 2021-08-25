@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                    <th>名前 </th>
-                   <td ><input type="text" name="name" id="name" value="<?php echo $result['name'] ?>"></td>
+                   <td ><input type="text" name="name" id="name" size="30" value="<?php echo $result['name'] ?>"></td>
                 </tr>
 
                 <tr>
@@ -38,10 +38,6 @@
                         </select>
                     </td>
                </tr>
-                <tr>
-                    <th>年齢 </th>
-                    <td ><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
-                </tr>
                <tr>
                    <th>性別</th>
                    <td >
@@ -55,8 +51,12 @@
                             }
                        ?>
                   </td>
-               </tr>
-               <tr>
+                </tr>
+                <tr>
+                   <th>年齢 </th>
+                   <td ><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                </tr>
+                <tr>
                    <th>所属部署</th>
                     <td >
                         <?php

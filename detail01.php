@@ -14,7 +14,6 @@
                     $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
                     $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
                     $sql->execute();
-
                 }else{
                     $stmt = $pdo->prepare('UPDATE member SET name = :name, pref = :pref , seibetu = :seibetu , age = :age , section_ID = :section_ID , grade_ID = :grade_ID WHERE member.member_ID = :id');
                     $stmt->execute(array(':name' => $_POST['name'], ':pref' => $_POST['pref'], ':seibetu' => $_POST['seibetu'],
