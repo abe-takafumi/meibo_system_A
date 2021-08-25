@@ -6,14 +6,15 @@
             require_once 'include/def.php';
             if(empty($_GET['member_ID'])){
                 if(empty($_POST['member_ID'])){
-                    $count = $db->prepare('INSERT INTO member (name, pref, seibetu, age,section_ID,grade_ID) VALUES (:name,:pref,:seibetu,:age,:section_name,:grade_name)');
+                    $count = $pdo->prepare('INSERT INTO member (name, pref, seibetu, age,section_ID,grade_ID) VALUES (:name,:pref,:seibetu,:age,:section_name,:grade_name)');
                     $params = array(':name' =>$_POST["name"],':pref'=>$_POST["pref"],':seibetu'=>$_POST["seibetu"],':age'=>$_POST["age"],':section_name'=>$_POST["section_name"],':grade_name'=>$_POST["grade_name"]);
                     $count->execute($params);
-                    $res = $count->fetch();
-                    $id = $res['member_ID'];
+
+                    $id = $pdo->lastInsertId();     // PDOオブジェクトにSQLを渡す
                     $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
                     $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
                     $sql->execute();
+
                 }else{
                     $stmt = $pdo->prepare('UPDATE member SET name = :name, pref = :pref , seibetu = :seibetu , age = :age , section_ID = :section_ID , grade_ID = :grade_ID WHERE member.member_ID = :id');
                     $stmt->execute(array(':name' => $_POST['name'], ':pref' => $_POST['pref'], ':seibetu' => $_POST['seibetu'],
@@ -59,9 +60,9 @@
                 echo "<tr><th>年齢</th><td>" . $result['age'] . "</td></tr>";
                 echo "<tr><th>所属部署</th><td>" . $res_sec['section_name'] . "</td></tr>";
                 echo "<tr><th>役職</th><td>" . $res_gra['grade_name'] . "</td></tr>";
+
             ?>
         </table>
-
         <form method='post' action='entry_update01.php' style="text-align:right">
             <input type="submit" name="member_ID" value="編集" >
             <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
