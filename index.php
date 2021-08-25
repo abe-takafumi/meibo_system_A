@@ -8,9 +8,6 @@
             require './include/common_no0.php';
         ?>
 
-        <hr color="#00ff00" size="3">
-
-
         <form method='get' action='index.php'>
             <?php
                 //検索した文字列や選択した内容を初期値として保存するためのif文
@@ -21,33 +18,26 @@
                     echo '名前：<input type="text" name="name" size="30" maxlength="30">';
                 }
 
+                echo '性別：<select name="seibetu">';
                 if(isset($_GET['seibetu']) && !empty($_GET['seibetu'])){
+                    echo '<option value="">すべて</option>';
                     if($_GET['seibetu'] == 1){
-                        echo '性別：<select name="seibetu">';
-                            echo '<option value="">すべて</option>';
                             echo '<option value="1" selected="selected">男</option>';
                             echo '<option value="2">女</option>';
-                        echo '</select>';
                     }
                     else{
-                        echo '性別：<select name="seibetu">';
-                            echo '<option value="">すべて</option>';
                             echo '<option value="1">男</option>';
                             echo '<option value="2" selected="selected">女</option>';
-                        echo '</select>';
                     }
                 }
                 else{
-                    echo '性別：<select name="seibetu">';
                         echo '<option value="" selected="selected">すべて</option>';
                         echo '<option value="1">男</option>';
                         echo '<option value="2">女</option>';
-                    echo '</select>';
                 }
-            ?>
+                echo "</select>";
 
-            部署：<select name="section_ID">
-            <?php
+                echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
                     echo '<option value="">すべて</option>';
@@ -82,7 +72,7 @@
 
         </form>
 
-        <hr color="#00ff00" size="3">
+        <hr>
 
         <table style="border-collapse:collapse;" border="1">
             <tr>
