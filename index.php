@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>トップページ</title>
-    </head>
+    <?php require_once './include/header.php'; ?>
     <body>
         <?php
-            //DBのデータを参照する
-            $DB_DSN = "mysql:host=localhost; dbname=tabe; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
-
+            require_once './include/def.php';
             //共有フォルダを参照する
             require './include/common_no0.php';
         ?>
-
-        <h1>社員名簿システム</h1>
-        <p style="text-align:right"> <a href="./index.php">トップ画面</a>
-        <a style="text-align:right" href="./entry01.php">新規登録</a></p>
-
-        <hr color="#00ff00" size="3">
-
 
         <form method='get' action='index.php'>
             <?php
@@ -34,38 +18,31 @@
                     echo '名前：<input type="text" name="name" size="30" maxlength="30">';
                 }
 
+                echo '性別：<select name="seibetu">';
                 if(isset($_GET['seibetu']) && !empty($_GET['seibetu'])){
+                    echo '<option value="">すべて</option>';
                     if($_GET['seibetu'] == 1){
-                        echo '性別：<select name="seibetu">';
-                            echo '<option value="">すべて</option>';
                             echo '<option value="1" selected="selected">男</option>';
                             echo '<option value="2">女</option>';
-                        echo '</select>';
                     }
                     else{
-                        echo '性別：<select name="seibetu">';
-                            echo '<option value="">すべて</option>';
                             echo '<option value="1">男</option>';
                             echo '<option value="2" selected="selected">女</option>';
-                        echo '</select>';
                     }
                 }
                 else{
-                    echo '性別：<select name="seibetu">';
                         echo '<option value="" selected="selected">すべて</option>';
                         echo '<option value="1">男</option>';
                         echo '<option value="2">女</option>';
-                    echo '</select>';
                 }
-            ?>
+                echo "</select>";
 
-            部署：<select name="section_ID">
-            <?php
+                echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
                     echo '<option value="">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
-                        if($value == 'section_ID'){
+                        if($_GET['section_ID'] == $key){
                             echo "<option ". $name ."value=". $key ."selected='selected'>" . $value . "</option>";
                         }
                         else{
@@ -83,7 +60,7 @@
 
             役職：<select name="grade_ID">
             <?php
-                $name='name="section_ID"';
+                $name='name="grade_ID"';
                 echo '<option value="" selected="selected">すべて</option>';
                 foreach ($grade_ID_array as $key => $value){
                     echo "<option ". $name ."value=". $key .">" . $value . "</option>";
@@ -95,9 +72,9 @@
 
         </form>
 
-        <hr color="#00ff00" size="3">
+        <hr>
 
-        <table border="1" style="border-collapse:collapse" align="center">
+        <table style="border-collapse:collapse;" border="1">
             <tr>
                 <th>社員ID</th>
                 <th>名前</th>
