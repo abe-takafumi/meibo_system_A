@@ -49,7 +49,7 @@
             $res_gra = $sql_gra->fetch();          // 実行結果を取得して$resultに代入する
         ?>
 
-        <table  border="1" >
+        <table  border="1">
             <?php
                 require 'include/common.php';
                 echo "<tr><th>社員ID</th><td>" . $result['member_ID'] . "</td></tr>";
@@ -67,8 +67,8 @@
             <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
         </form>
 
-        <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
-            <input type="submit" name="delete" value="削除">
+        <form method='post' action='index.php' onsubmit="return check()" style="text-align:right">
+            <input type="submit" name="delete" value="削除" >
             <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
         </form>
 
