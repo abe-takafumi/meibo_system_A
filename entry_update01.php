@@ -9,9 +9,19 @@
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute(array(':id' => $_POST["member_ID"]));                      // SQLを実行する
             $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
+
+            $query_str_sec = "SELECT * FROM section1_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
+            $sql_sec = $pdo->prepare($query_str_sec);                              // PDOオブジェクトにSQLを渡す
+            $sql_sec->execute();                                                            // SQLを実行する
+            $res_sec = $sql_sec->fetchAll();                                             // 実行結果を取得して$resultに代入する
+
+            $query_str_gra = "SELECT * FROM grade_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
+            $sql_gra = $pdo->prepare($query_str_gra);                              // PDOオブジェクトにSQLを渡す
+            $sql_gra->execute();                                                            // SQLを実行する
+            $res_gra = $sql_gra->fetchAll();
         ?>
         <form method="post" action ="detail01.php" onsubmit="return check()">
-            <table border="1" >
+            <table border="1">
                 <?php require 'include/common_no0.php'; ?>
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
@@ -60,11 +70,11 @@
                    <th>所属部署</th>
                     <td >
                         <?php
-                            foreach ($section_ID_array as $key => $value){
-                                if($result['section_ID'] == $key ){
-                                    echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key .">" . $value . "</label>";
+                            foreach ($res_sec as $sec){
+                                if($result['section_ID'] == $sec['ID'] ){
+                                    echo "<label><input type='radio' name='section_ID' checked='checked' value=". $sec['ID'] .">" . $sec['section_name'] . "</label>";
                                 }else{
-                                    echo "<label><input type='radio' name='section_ID' value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='section_ID' value=". $sec['ID'] .">" . $sec['section_name'] . "</label>";
                                 }
                             }
                         ?>
@@ -74,11 +84,11 @@
                     <th>役職</th>
                     <td>
                         <?php
-                            foreach ($grade_ID_array as $key => $value){
-                                if($result['grade_ID'] == $key ){
-                                    echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $key .">" . $value . "</label>";
+                            foreach ($res_gra as $gra){
+                                if($result['grade_ID'] == $gra['ID'] ){
+                                    echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $gra['ID'] .">" . $gra['grade_name'] . "</label>";
                                 }else{
-                                    echo "<label><input type='radio' name='grade_ID' value=". $key .">" . $value . "</label>";
+                                    echo "<label><input type='radio' name='grade_ID' value=". $gra['ID'] .">" . $gra['grade_name'] . "</label>";
                                 }
                             }
                         ?>
