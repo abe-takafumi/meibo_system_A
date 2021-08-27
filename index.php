@@ -6,19 +6,21 @@
             require_once './include/def.php';
             //共有フォルダを参照する
             require './include/common_no0.php';
+
+            $stmt = $pdo->prepare('DELETE FROM member WHERE member.member_ID = :id');
+            $stmt->execute(array(':id' => $_POST["delete"]));
         ?>
 
         <script type="text/javascript">
             function resetForm(){
-                const name = document.getElementById('name');
-                document.name.value="";
-                document.seibetu.value="";
-                document.section_ID.value="";
-                document.grade_ID.value="";
+                document.fm1.name.value="";
+                document.fm1.seibetu.value="";
+                document.fm1.section_ID.value="";
+                document.fm1.grade_ID.value="";
             }
         </script>
 
-        <form method='get' action='index.php'>
+        <form method='get' action='index.php' name='fm1'>
             <?php
                 //検索した文字列や選択した内容を初期値として保存するためのif文
                 $name = "";
@@ -52,7 +54,6 @@
                 echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
-                    echo "parametakitetatoki";
                     echo '<option value="">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
                         if($_GET['section_ID'] == $key){
@@ -64,7 +65,6 @@
                     }
                 }
                 else{
-                    echo "parametanashi";
                     echo '<option value="" selected="selected">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
                         echo "<option ". $name ."value=". $key .">" . $value . "</option>";
@@ -75,15 +75,28 @@
             役職：<select name="grade_ID">
             <?php
                 $name='name="grade_ID"';
-                echo '<option value="" selected="selected">すべて</option>';
-                foreach ($grade_ID_array as $key => $value){
-                    echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                if(isset($_GET['grade_ID']) && !empty($_GET['grade_ID'])){
+                    echo '<option value="">すべて</option>';
+                    foreach ($grade_ID_array as $key => $value){
+                        if($_GET['grade_ID'] == $key){
+                            echo "<option ". $name ."value=". $key ." selected='selected'>" . $value . "</option>";
+                        }
+                        else{
+                            echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                        }
+                    }
+                }
+                else{
+                    echo '<option value="" selected="selected">すべて</option>';
+                    foreach ($grade_ID_array as $key => $value){
+                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                    }
                 }
             ?></select><br>
 
             <input type="submit" value="検索">
         </form>
-        <button onclick="resetForm()">リセット</button>
+        <button type="button" onclick="resetForm()">リセット</button>
 
         <hr>
 
