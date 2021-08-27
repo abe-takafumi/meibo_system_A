@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
         <?php require_once 'include/header.php'; ?>
-        
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <body>
-        <?php require_once 'include/def.php'; ?>
+        <?php require_once 'include/def.php';
+            $query_str = "SELECT * FROM section1_master WHERE 1";
+            $query_str;
+            $sql = $pdo->prepare($query_str);
+            $sql->execute();
+            $result = $sql->fetchAll();
+
+            $query_str = "SELECT * FROM grade_master WHERE 1";
+            $query_str;
+            $sql = $pdo->prepare($query_str);
+            $sql->execute();
+            $result01 = $sql->fetchAll();
+        ?>
             <table border="1"style="border-collapse:collapse" align="center" >
                 <form action="detail01.php" method="post"onsubmit="return check()">
                             <tr>
                                 <th>名前 </th>
-                                <td ><input type="text" name="name" id=name value=""></td>
+                                <td ><input type="text" name="name" id=name maxlength="30" value=""></td>
                             </tr>
                             <tr>
                                <th>出身地 </th>
@@ -38,25 +50,33 @@
                             </tr>
                             <tr>
                                <th>所属部署</th>
-                                <td ><label><input type="radio" name="section_name" value="1"checked="checked">第一事業部</label>
-                                    <label><input type="radio" name="section_name" value="2">第二事業部</label>
-                                    <label><input type="radio" name="section_name" value="3">営業</label>
-                                    <label><input type="radio" name="section_name" value="4">総務</label>
-                                    <label><input type="radio" name="section_name" value="5">人事</label>
-                               </td>
+                               <td ><?php
+                                    foreach ($result as $key){
+                                       if($key['ID'] == 1 ){
+                                           echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key['ID'] .">" . $key['section_name'] . "</label>";
+                                       }else{
+                                           echo "<label><input type='radio' name='section_ID' value=".$key['ID'] .">" . $key['section_name']. "</label>";
+                                       }
+                                   }
+                               ?></td>
                             </tr>
                             <tr>
                                <th>役職</th>
-                                <td><label><input type="radio" name="grade_name" value="1"checked="checked">事業部長</label>
-                                    <label><input type="radio" name="grade_name" value="2">部長</label>
-                                    <label><input type="radio" name="grade_name" value="3">チームリーダー</label>
-                                    <label><input type="radio" name="grade_name" value="4">リーダー</label>
-                                    <label><input type="radio" name="grade_name" value="5">メンバー</label>
-                               </td>
+                               <td ><?php
+                                    foreach ($result01 as $key){
+                                       if($key['ID'] == 1 ){
+                                           echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $key['ID'] .">" . $key['grade_name'] . "</label>";
+                                       }else{
+                                           echo "<label><input type='radio' name='grade_ID' value=".$key['ID'] .">" . $key['grade_name']. "</label>";
+                                       }
+                                   }
+                               ?></td>
                             </tr>
             </table>
                             <p style="text-align: right">
-                             <input type="submit"value="登録"><input type="reset">
+                            <button type="submit"class="btn btn-primary">登録</button>
+                            <input type="reset">
+
                             </p>
                 </form>
                 <script type="text/javascript">
