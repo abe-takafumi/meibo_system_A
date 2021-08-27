@@ -7,8 +7,13 @@
             //共有フォルダを参照する
             require './include/common_no0.php';
 
-            $stmt = $pdo->prepare('DELETE FROM member WHERE member.member_ID = :id');
-            $stmt->execute(array(':id' => $_POST["delete"]));
+            if(!empty($_POST['delete'])){
+                $stmt = $pdo->prepare('DELETE FROM member WHERE member.member_ID = :id');
+                $stmt->execute(array(':id' => $_POST["delete"]));
+            }
+            else{
+
+            }
         ?>
 
         <script type="text/javascript">
