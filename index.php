@@ -8,15 +8,27 @@
             require './include/common_no0.php';
         ?>
 
+        <script type="text/javascript">
+            function resetForm(){
+                const name = document.getElementById('name');
+                document.name.value="";
+                document.seibetu.value="";
+                document.section_ID.value="";
+                document.grade_ID.value="";
+            }
+        </script>
+
         <form method='get' action='index.php'>
             <?php
                 //検索した文字列や選択した内容を初期値として保存するためのif文
+                $name = "";
                 if(isset($_GET['name']) && !empty($_GET['name'])){
                     echo '名前：<input type="text" name="name" size="30" maxlength="30" value="'.$_GET["name"] . '">';
                 }
                 else{
                     echo '名前：<input type="text" name="name" size="30" maxlength="30">';
                 }
+
 
                 echo '性別：<select name="seibetu">';
                 if(isset($_GET['seibetu']) && !empty($_GET['seibetu'])){
@@ -40,10 +52,11 @@
                 echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
+                    echo "parametakitetatoki";
                     echo '<option value="">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
                         if($_GET['section_ID'] == $key){
-                            echo "<option ". $name ."value=". $key ."selected='selected'>" . $value . "</option>";
+                            echo "<option ". $name ."value=". $key ." selected='selected'>" . $value . "</option>";
                         }
                         else{
                             echo "<option ". $name ."value=". $key .">" . $value . "</option>";
@@ -51,6 +64,7 @@
                     }
                 }
                 else{
+                    echo "parametanashi";
                     echo '<option value="" selected="selected">すべて</option>';
                     foreach ($section_ID_array as $key => $value){
                         echo "<option ". $name ."value=". $key .">" . $value . "</option>";
@@ -68,9 +82,8 @@
             ?></select><br>
 
             <input type="submit" value="検索">
-            <input type="reset" value="リセット">
-
         </form>
+        <button onclick="resetForm()">リセット</button>
 
         <hr>
 
