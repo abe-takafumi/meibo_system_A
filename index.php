@@ -12,6 +12,7 @@
                 $stmt->execute(array(':id' => $_POST["delete"]));
             }
             else{
+                
             }
 
             $section_str="SELECT * FROM section1_master WHERE 1 ";
