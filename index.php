@@ -3,8 +3,9 @@
     <?php require_once './include/header.php'; ?>
     <body>
         <?php
-            require_once './include/def.php';
             //共有フォルダを参照する
+            require './include/def.php';
+            require './include/DB.php';
             require './include/common_no0.php';
 
             if(!empty($_POST['delete'])){
@@ -12,19 +13,17 @@
                 $stmt->execute(array(':id' => $_POST["delete"]));
             }
             else{
-                
             }
 
             $section_str="SELECT * FROM section1_master WHERE 1 ";
-            $sql = $pdo->prepare($section_str);
-            $sql->execute();
-            $section_result = $sql->fetchAll();
-            var_dump($section_result);
+            $sec_sql = $pdo->prepare($section_str);
+            $sec_sql->execute();
+            $section_result = $sec_sql->fetchAll();
 
             $grade_str="SELECT * FROM grade_master WHERE 1 ";
-            $sql = $pdo->prepare($grade_str);
-            $sql->execute();
-            $grade_result = $sql->fetchAll();
+            $gra_sql = $pdo->prepare($grade_str);
+            $gra_sql->execute();
+            $grade_result = $gra_sql->fetchAll();
         ?>
 
         <script type="text/javascript">
@@ -41,35 +40,28 @@
                 //検索した文字列や選択した内容を初期値として保存するためのif文
                 $name = "";
                 if(isset($_GET['name']) && !empty($_GET['name'])){
-                    echo '名前：<input type="text" name="name" size="30" maxlength="30" value="'.$_GET["name"] . '">';
+                    $name = $_GET['name'];
                 }
-                else{
-                    echo '名前：<input type="text" name="name" size="30" maxlength="30">';
-                }
+                echo '名前：<input type="text" name="name" size="30" maxlength="30" value="' . $name . '">';
 
 
-                echo '性別：<select name="seibetu">';
+                $param_seibetu="";
                 if(isset($_GET['seibetu']) && !empty($_GET['seibetu'])){
-                    echo '<option value="">すべて</option>';
-                    if($_GET['seibetu'] == 1){
-                            echo '<option value="1" selected="selected">男</option>';
-                            echo '<option value="2">女</option>';
-                    }
-                    else{
-                            echo '<option value="1">男</option>';
-                            echo '<option value="2" selected="selected">女</option>';
-                    }
+                    $param_seibetu = $_GET['seibetu'];
                 }
-                else{
-                        echo '<option value="" selected="selected">すべて</option>';
-                        echo '<option value="1">男</option>';
-                        echo '<option value="2">女</option>';
-                }
-                echo "</select>";
+            ?>
+                性別：<select name="seibetu">
+                    <option value='' <?php if($param_seibetu == ''){echo "selected";} ?> >すべて</option>
+                    <option value='1' <?php if($param_seibetu == '1'){echo "selected";} ?> >男</option>
+                    <option value='2' <?php if($param_seibetu == '2'){echo "selected";} ?> >女</option>
+                </select>
 
+            <?php
+                $param_section = "";
                 echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
+                    $param_section = $_GET['section_ID'];
                     echo '<option value="">すべて</option>';
                     foreach ($section_result as $sec){
                         if($_GET['section_ID'] == $sec['ID']){
@@ -127,7 +119,11 @@
 
             <?php
                 $where_str = "";
-                $query_str = "SELECT * FROM member WHERE 1 ";
+                $query_str = "SELECT member.member_ID , member.name , member.seibetu , grade_master.grade_name , section1_master.section_name
+                 FROM member
+                 LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+                 LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+                 WHERE 1 ";
 
                 if(isset($_GET['name']) && !empty($_GET['name'])){
                     $where_str .= "AND name LIKE '%" . $_GET['name'] . "%' ";
@@ -162,8 +158,8 @@
                         <td><a href="./detail01.php?member_ID=<?php echo $member["member_ID"]?>"><?php echo $member["name"]; ?></a></td>
             <?php
                         echo "<td>" . $gender_array[$member['seibetu']] . "</td>";
-                        echo "<td>" . $section_result[$member['section_ID']] . "</td>";
-                        echo "<td>" . $grade_result[$member['grade_ID']] . "</td></tr>";
+                        echo "<td>" . $member['section_name'] . "</td>";
+                        echo "<td>" . $member['grade_name'] . "</td></tr>";
                     }
                     echo "検索結果：" . $cnt . "件";
                 }
