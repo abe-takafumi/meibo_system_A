@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <?php require_once './include/header.php'; ?>
+    <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <body>
         <?php
             //共有フォルダを参照する
@@ -90,11 +92,12 @@
 
             <input type="submit" value="検索">
         </form>
-        <button type="button" onclick="resetForm()">リセット</button>
+        <button type="button" onclick="resetForm()" class='btn btn-info'>リセット</button>
 
         <hr>
 
-        <table style="border-collapse:collapse;" border="1">
+        <!-- <table style="border-collapse:collapse;" border="1"> -->
+        <table class='table table-striped table table-hover table-dark'>
             <tr>
                 <th>社員ID</th><th>名前</th><th>性別</th><th>部署</th><th>役職</th>
             </tr>
@@ -148,4 +151,9 @@
             ?>
         </table>
     </body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 </html>

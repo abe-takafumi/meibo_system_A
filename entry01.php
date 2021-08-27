@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
         <?php require_once 'include/header.php'; ?>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <body>
         <?php require_once 'include/def.php';
+        require_once 'include/DB.php';
             $query_str = "SELECT * FROM section1_master WHERE 1";
             $query_str;
             $sql = $pdo->prepare($query_str);
@@ -74,9 +74,157 @@
                             </tr>
             </table>
                             <p style="text-align: right">
-                            <button type="submit"class="btn btn-primary">登録</button>
-                            <input type="reset">
+                            <a href="detail01.php" class="btn btn-flat"><span>登録</span></a>
+                            <style>
+                            *,
+                            *:before,
+                            *:after {
+                              -webkit-box-sizing: inherit;
+                              box-sizing: inherit;
+                            }
 
+                            html {
+                              -webkit-box-sizing: border-box;
+                              box-sizing: border-box;
+                              font-size: 62.5%;
+                            }
+
+                            .btn,
+                            a.btn,
+                            button.btn {
+                              font-size: 1.6rem;
+                              font-weight: 700;
+                              line-height: 1.5;
+                              position: relative;
+                              display: inline-block;
+                              padding: 1rem 4rem;
+                              cursor: pointer;
+                              -webkit-user-select: none;
+                              -moz-user-select: none;
+                              -ms-user-select: none;
+                              user-select: none;
+                              -webkit-transition: all 0.3s;
+                              transition: all 0.3s;
+                              text-align: center;
+                              vertical-align: middle;
+                              text-decoration: none;
+                              letter-spacing: 0.1em;
+                              color: #212529;
+                              border-radius: 0.5rem;
+                            }
+
+                            a.btn-flat {
+                              overflow: hidden;
+
+                              padding: 1.5rem 6rem;
+
+                              color: #fff;
+                              border-radius: 0;
+                              background: #000;
+                            }
+
+                            a.btn-flat span {
+                              position: relative;
+                            }
+
+                            a.btn-flat:before {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+
+                              width: 150%;
+                              height: 500%;
+
+                              content: "";
+                              -webkit-transition: all 0.5s ease-in-out;
+                              transition: all 0.5s ease-in-out;
+                              -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+                              transform: translateX(-98%) translateY(-25%) rotate(45deg);
+
+                              background: #00b7ee;
+                            }
+
+                            a.btn-flat:hover:before {
+                              -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+                              transform: translateX(-9%) translateY(-25%) rotate(45deg);
+                            }
+                            </style>
+
+                        <input type="submit" class="btn btn-flat"><span>リセット</span></a>
+                            <style>
+                            *,
+                            *:before,
+                            *:after {
+                              -webkit-box-sizing: inherit;
+                              box-sizing: inherit;
+                            }
+
+                            html {
+                              -webkit-box-sizing: border-box;
+                              box-sizing: border-box;
+                              font-size: 62.5%;
+                            }
+
+                            .btn,
+                            a.btn,
+                            button.btn {
+                              font-size: 1.6rem;
+                              font-weight: 700;
+                              line-height: 1.5;
+                              position: relative;
+                              display: inline-block;
+                              padding: 1rem 4rem;
+                              cursor: pointer;
+                              -webkit-user-select: none;
+                              -moz-user-select: none;
+                              -ms-user-select: none;
+                              user-select: none;
+                              -webkit-transition: all 0.3s;
+                              transition: all 0.3s;
+                              text-align: center;
+                              vertical-align: middle;
+                              text-decoration: none;
+                              letter-spacing: 0.1em;
+                              color: #212529;
+                              border-radius: 0.5rem;
+                            }
+
+                            a.btn-flat {
+                              overflow: hidden;
+
+                              padding: 1.5rem 6rem;
+
+                              color: #fff;
+                              border-radius: 0;
+                              background: #000;
+                            }
+
+                            a.btn-flat span {
+                              position: relative;
+                            }
+
+                            a.btn-flat:before {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+
+                              width: 150%;
+                              height: 500%;
+
+                              content: "";
+                              -webkit-transition: all 0.5s ease-in-out;
+                              transition: all 0.5s ease-in-out;
+                              -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+                              transform: translateX(-98%) translateY(-25%) rotate(45deg);
+
+                              background: #eb6877;
+                            }
+
+                            a.btn-flat:hover:before {
+                              -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+                              transform: translateX(-9%) translateY(-25%) rotate(45deg);
+                            }
+                            </style>
                             </p>
                 </form>
                 <script type="text/javascript">
@@ -98,7 +246,7 @@
                         }else if(isNaN(age.value)){
                             alert('数値を入力してください');
                             return false;
-                        }else if(age.value >= 100){
+                        }else if(age.value >= 100 || age.value < 1){
                             alert('1-99の範囲で入力してください');
                             return false;
 
@@ -110,5 +258,5 @@
                         }
                     }
         </script>
-    </body>
+        </body>
 </html>
