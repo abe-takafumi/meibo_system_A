@@ -12,8 +12,19 @@
                 $stmt->execute(array(':id' => $_POST["delete"]));
             }
             else{
-
+                
             }
+
+            $section_str="SELECT * FROM section1_master WHERE 1 ";
+            $sql = $pdo->prepare($section_str);
+            $sql->execute();
+            $section_result = $sql->fetchAll();
+            var_dump($section_result);
+
+            $grade_str="SELECT * FROM grade_master WHERE 1 ";
+            $sql = $pdo->prepare($grade_str);
+            $sql->execute();
+            $grade_result = $sql->fetchAll();
         ?>
 
         <script type="text/javascript">
@@ -60,19 +71,19 @@
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
                     echo '<option value="">すべて</option>';
-                    foreach ($section_ID_array as $key => $value){
-                        if($_GET['section_ID'] == $key){
-                            echo "<option ". $name ."value=". $key ." selected='selected'>" . $value . "</option>";
+                    foreach ($section_result as $sec){
+                        if($_GET['section_ID'] == $sec['ID']){
+                            echo "<option ". $name ."value=". $sec['ID'] ." selected='selected'>" . $sec['section_name'] . "</option>";
                         }
                         else{
-                            echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                            echo "<option ". $name ."value=". $sec['ID'] .">" . $sec['section_name'] . "</option>";
                         }
                     }
                 }
                 else{
                     echo '<option value="" selected="selected">すべて</option>';
-                    foreach ($section_ID_array as $key => $value){
-                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                    foreach ($section_result as $sec){
+                        echo "<option ". $name ."value=". $sec['ID'] .">" . $sec['section_name'] . "</option>";
                     }
                 }
             ?></select>
@@ -82,19 +93,19 @@
                 $name='name="grade_ID"';
                 if(isset($_GET['grade_ID']) && !empty($_GET['grade_ID'])){
                     echo '<option value="">すべて</option>';
-                    foreach ($grade_ID_array as $key => $value){
-                        if($_GET['grade_ID'] == $key){
-                            echo "<option ". $name ."value=". $key ." selected='selected'>" . $value . "</option>";
+                    foreach ($grade_result as $gra){
+                        if($_GET['grade_ID'] == $gra['ID']){
+                            echo "<option ". $name ."value=". $gra['ID'] ." selected='selected'>" . $gra['grade_name'] . "</option>";
                         }
                         else{
-                            echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                            echo "<option ". $name ."value=". $gra['ID'] .">" . $gra['grade_name'] . "</option>";
                         }
                     }
                 }
                 else{
                     echo '<option value="" selected="selected">すべて</option>';
-                    foreach ($grade_ID_array as $key => $value){
-                        echo "<option ". $name ."value=". $key .">" . $value . "</option>";
+                    foreach ($grade_result as $gra){
+                        echo "<option ". $name ."value=". $gra['ID'] .">" . $gra['grade_name'] . "</option>";
                     }
                 }
             ?></select><br>
@@ -151,8 +162,8 @@
                         <td><a href="./detail01.php?member_ID=<?php echo $member["member_ID"]?>"><?php echo $member["name"]; ?></a></td>
             <?php
                         echo "<td>" . $gender_array[$member['seibetu']] . "</td>";
-                        echo "<td>" . $section_ID_array[$member['section_ID']] . "</td>";
-                        echo "<td>" . $grade_ID_array[$member['grade_ID']] . "</td></tr>";
+                        echo "<td>" . $section_result[$member['section_ID']] . "</td>";
+                        echo "<td>" . $grade_result[$member['grade_ID']] . "</td></tr>";
                     }
                     echo "検索結果：" . $cnt . "件";
                 }
