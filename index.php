@@ -58,49 +58,35 @@
 
             <?php
                 $param_section = "";
-                echo '部署：<select name="section_ID">';
                 $name='name="section_ID"';
                 if(isset($_GET['section_ID']) && !empty($_GET['section_ID'])){
                     $param_section = $_GET['section_ID'];
-                    echo '<option value="">すべて</option>';
-                    foreach ($section_result as $sec){
-                        if($_GET['section_ID'] == $sec['ID']){
-                            echo "<option ". $name ."value=". $sec['ID'] ." selected='selected'>" . $sec['section_name'] . "</option>";
-                        }
-                        else{
-                            echo "<option ". $name ."value=". $sec['ID'] .">" . $sec['section_name'] . "</option>";
-                        }
-                    }
                 }
-                else{
-                    echo '<option value="" selected="selected">すべて</option>';
-                    foreach ($section_result as $sec){
-                        echo "<option ". $name ."value=". $sec['ID'] .">" . $sec['section_name'] . "</option>";
-                    }
-                }
-            ?></select>
+            ?>
+                部署：<select name="section_ID">
+                    <option value='' <?php if($param_section == ''){echo "selected";} ?> >すべて</option>
+                    <option value='1' <?php if($param_section == '1'){echo "selected";} ?> >第一事業部</option>
+                    <option value='2' <?php if($param_section == '2'){echo "selected";} ?> >第二事業部</option>
+                    <option value='3' <?php if($param_section == '3'){echo "selected";} ?> >営業</option>
+                    <option value='4' <?php if($param_section == '4'){echo "selected";} ?> >総務</option>
+                    <option value='5' <?php if($param_section == '5'){echo "selected";} ?> >人事</option>
+                </select>
 
-            役職：<select name="grade_ID">
             <?php
+                $param_grade = "";
                 $name='name="grade_ID"';
                 if(isset($_GET['grade_ID']) && !empty($_GET['grade_ID'])){
-                    echo '<option value="">すべて</option>';
-                    foreach ($grade_result as $gra){
-                        if($_GET['grade_ID'] == $gra['ID']){
-                            echo "<option ". $name ."value=". $gra['ID'] ." selected='selected'>" . $gra['grade_name'] . "</option>";
-                        }
-                        else{
-                            echo "<option ". $name ."value=". $gra['ID'] .">" . $gra['grade_name'] . "</option>";
-                        }
-                    }
+                    $param_section = $_GET['grade_ID'];
                 }
-                else{
-                    echo '<option value="" selected="selected">すべて</option>';
-                    foreach ($grade_result as $gra){
-                        echo "<option ". $name ."value=". $gra['ID'] .">" . $gra['grade_name'] . "</option>";
-                    }
-                }
-            ?></select><br>
+            ?>
+                部署：<select name="grade_ID">
+                    <option value='' <?php if($param_section == ''){echo "selected";} ?> >すべて</option>
+                    <option value='1' <?php if($param_section == '1'){echo "selected";} ?> >事業部長</option>
+                    <option value='2' <?php if($param_section == '2'){echo "selected";} ?> >部長</option>
+                    <option value='3' <?php if($param_section == '3'){echo "selected";} ?> >チームリーダー</option>
+                    <option value='4' <?php if($param_section == '4'){echo "selected";} ?> >リーダー</option>
+                    <option value='5' <?php if($param_section == '5'){echo "selected";} ?> >メンバー</option>
+                </select><br>
 
             <input type="submit" value="検索">
         </form>
@@ -110,11 +96,7 @@
 
         <table style="border-collapse:collapse;" border="1">
             <tr>
-                <th>社員ID</th>
-                <th>名前</th>
-                <th>性別</th>
-                <th>部署</th>
-                <th>役職</th>
+                <th>社員ID</th><th>名前</th><th>性別</th><th>部署</th><th>役職</th>
             </tr>
 
             <?php
