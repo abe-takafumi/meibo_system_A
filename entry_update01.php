@@ -5,20 +5,27 @@
         <?php
             require_once 'include/def.php';
             //メンバー
-            $query_str = "SELECT * FROM member WHERE member.member_ID = :id";
-            $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-            $sql->execute(array(':id' => $_POST["member_ID"]));                      // SQLを実行する
-            $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
+            if(empty($_POST['member_ID'])){
+                echo "エラー";
+                echo "<a class='btn btn-success' href='./index.php' style='text-align:right' >トップ画面</a>";
+                exit;
+            }else{
+                $id=$_POST["member_ID"];
+                $query_str = "SELECT * FROM member WHERE member.member_ID = :id";
+                $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+                $sql->execute(array(':id' => $_POST["member_ID"]));                      // SQLを実行する
+                $result = $sql->fetch();           // 実行結果を取得して$resultに代入する
 
-            $query_str_sec = "SELECT * FROM section1_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            $sql_sec = $pdo->prepare($query_str_sec);                              // PDOオブジェクトにSQLを渡す
-            $sql_sec->execute();                                                            // SQLを実行する
-            $res_sec = $sql_sec->fetchAll();                                             // 実行結果を取得して$resultに代入する
+                $query_str_sec = "SELECT * FROM section1_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
+                $sql_sec = $pdo->prepare($query_str_sec);                              // PDOオブジェクトにSQLを渡す
+                $sql_sec->execute();                                                            // SQLを実行する
+                $res_sec = $sql_sec->fetchAll();                                             // 実行結果を取得して$resultに代入する
 
-            $query_str_gra = "SELECT * FROM grade_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            $sql_gra = $pdo->prepare($query_str_gra);                              // PDOオブジェクトにSQLを渡す
-            $sql_gra->execute();                                                            // SQLを実行する
-            $res_gra = $sql_gra->fetchAll();
+                $query_str_gra = "SELECT * FROM grade_master WHERE 1";                                                           // 実行するSQL文を画面に表示するだけ（デバッグプリント
+                $sql_gra = $pdo->prepare($query_str_gra);                              // PDOオブジェクトにSQLを渡す
+                $sql_gra->execute();                                                            // SQLを実行する
+                $res_gra = $sql_gra->fetchAll();
+            }
         ?>
         <form method="post" action ="detail01.php" onsubmit="return check()">
             <table border="1">
