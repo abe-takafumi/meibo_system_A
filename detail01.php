@@ -4,6 +4,7 @@
     <body>
         <?php
             require_once 'include/def.php';
+            require_once 'include/DB.php';
             if(empty($_GET['member_ID']) && empty($_POST['name'])){
                 echo "エラーdesu<br>";
                 echo "<a href='./index.php' style='text-align:right' >トップ画面</a>";

@@ -4,6 +4,7 @@
     <body>
         <?php
             require_once 'include/def.php';
+            require_once 'include/DB.php';
             //メンバー
             if(empty($_POST['member_ID'])){
                 echo "エラー";
