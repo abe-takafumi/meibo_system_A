@@ -50,7 +50,7 @@
                             </tr>
                             <tr>
                                <th>所属部署</th>
-                               <td ><?php
+                               <td><?php
                                     foreach ($result as $key){
                                        if($key['ID'] == 1 ){
                                            echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key['ID'] .">" . $key['section_name'] . "</label>";
