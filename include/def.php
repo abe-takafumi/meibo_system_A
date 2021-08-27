@@ -12,4 +12,5 @@
     <a href="./entry01.php" style="text-align:right">新規社員登録へ</a>
     |
 </p>
+
 <hr>
