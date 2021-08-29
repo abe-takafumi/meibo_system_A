@@ -90,9 +90,9 @@
                     <option value='5' <?php if($param_section == '5'){echo "selected";} ?> >メンバー</option>
                 </select><br>
 
-            <input type="submit" value="検索">
+            <input type="submit" class="btn btn-info" value="検索">
         </form>
-        <button type="button" onclick="resetForm()" class='btn btn-info'>リセット</button>
+        <button type="button" onclick="resetForm()" class="btn btn-secondary">リセット</button>
 
         <hr>
 

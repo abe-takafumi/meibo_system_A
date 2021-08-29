@@ -16,7 +16,7 @@
             $sql->execute();
             $result01 = $sql->fetchAll();
         ?>
-            <table border="1"style="border-collapse:collapse" align="center" >
+            <table border="1" align="center" style="border-collapse:collapse" class="table table-dark table-hover">
                 <form action="detail01.php" method="post"onsubmit="return check()">
                             <tr>
                                 <th>名前 </th>
@@ -24,7 +24,7 @@
                             </tr>
                             <tr>
                                <th>出身地 </th>
-                               <td ><select name='pref'id=pref>
+                               <td ><select class="form-select form-select-sm"name='pref'id=pref>
                                    <?php require './include/common.php'; ?>
                                    <?php
                                         $name='name="pref"';
@@ -73,159 +73,10 @@
                                ?></td>
                             </tr>
             </table>
-                            <p style="text-align: right">
-                            <a href="detail01.php" class="btn btn-flat"><span>登録</span></a>
-                            <style>
-                            *,
-                            *:before,
-                            *:after {
-                              -webkit-box-sizing: inherit;
-                              box-sizing: inherit;
-                            }
-
-                            html {
-                              -webkit-box-sizing: border-box;
-                              box-sizing: border-box;
-                              font-size: 62.5%;
-                            }
-
-                            .btn,
-                            a.btn,
-                            button.btn {
-                              font-size: 1.6rem;
-                              font-weight: 700;
-                              line-height: 1.5;
-                              position: relative;
-                              display: inline-block;
-                              padding: 1rem 4rem;
-                              cursor: pointer;
-                              -webkit-user-select: none;
-                              -moz-user-select: none;
-                              -ms-user-select: none;
-                              user-select: none;
-                              -webkit-transition: all 0.3s;
-                              transition: all 0.3s;
-                              text-align: center;
-                              vertical-align: middle;
-                              text-decoration: none;
-                              letter-spacing: 0.1em;
-                              color: #212529;
-                              border-radius: 0.5rem;
-                            }
-
-                            a.btn-flat {
-                              overflow: hidden;
-
-                              padding: 1.5rem 6rem;
-
-                              color: #fff;
-                              border-radius: 0;
-                              background: #000;
-                            }
-
-                            a.btn-flat span {
-                              position: relative;
-                            }
-
-                            a.btn-flat:before {
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-
-                              width: 150%;
-                              height: 500%;
-
-                              content: "";
-                              -webkit-transition: all 0.5s ease-in-out;
-                              transition: all 0.5s ease-in-out;
-                              -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
-                              transform: translateX(-98%) translateY(-25%) rotate(45deg);
-
-                              background: #00b7ee;
-                            }
-
-                            a.btn-flat:hover:before {
-                              -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
-                              transform: translateX(-9%) translateY(-25%) rotate(45deg);
-                            }
-                            </style>
-
-                        <input type="submit" class="btn btn-flat"><span>リセット</span></a>
-                            <style>
-                            *,
-                            *:before,
-                            *:after {
-                              -webkit-box-sizing: inherit;
-                              box-sizing: inherit;
-                            }
-
-                            html {
-                              -webkit-box-sizing: border-box;
-                              box-sizing: border-box;
-                              font-size: 62.5%;
-                            }
-
-                            .btn,
-                            a.btn,
-                            button.btn {
-                              font-size: 1.6rem;
-                              font-weight: 700;
-                              line-height: 1.5;
-                              position: relative;
-                              display: inline-block;
-                              padding: 1rem 4rem;
-                              cursor: pointer;
-                              -webkit-user-select: none;
-                              -moz-user-select: none;
-                              -ms-user-select: none;
-                              user-select: none;
-                              -webkit-transition: all 0.3s;
-                              transition: all 0.3s;
-                              text-align: center;
-                              vertical-align: middle;
-                              text-decoration: none;
-                              letter-spacing: 0.1em;
-                              color: #212529;
-                              border-radius: 0.5rem;
-                            }
-
-                            a.btn-flat {
-                              overflow: hidden;
-
-                              padding: 1.5rem 6rem;
-
-                              color: #fff;
-                              border-radius: 0;
-                              background: #000;
-                            }
-
-                            a.btn-flat span {
-                              position: relative;
-                            }
-
-                            a.btn-flat:before {
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-
-                              width: 150%;
-                              height: 500%;
-
-                              content: "";
-                              -webkit-transition: all 0.5s ease-in-out;
-                              transition: all 0.5s ease-in-out;
-                              -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
-                              transform: translateX(-98%) translateY(-25%) rotate(45deg);
-
-                              background: #eb6877;
-                            }
-
-                            a.btn-flat:hover:before {
-                              -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
-                              transform: translateX(-9%) translateY(-25%) rotate(45deg);
-                            }
-                            </style>
-                            </p>
+                        <p style="text-align: right">
+                        <input type="submit" class="btn btn-outline-success"value="登録">
+                        <input type="reset" class="btn btn-outline-danger">
+                        </p>
                 </form>
                 <script type="text/javascript">
                     const name = document.getElementById('name');

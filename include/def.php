@@ -7,9 +7,9 @@
 </svg></p></h1>
 <p style="text-align:right">
     |
-    <a href="./index.php" style="text-align:right" class="btn btn-primary" >トップ画面</a>
+    <a href="./index.php" style="text-align:right" class="btn btn-outline-primary">トップ画面</a>
     |
-    <a href="./entry01.php" style="text-align:right" class="btn btn-primary">新規社員登録へ</a>
+    <a href="./entry01.php" style="text-align:right"class="btn btn-outline-primary">新規社員登録へ</a>
     |
 </p>
 <hr>
