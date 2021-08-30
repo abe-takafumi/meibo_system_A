@@ -97,7 +97,7 @@
         <hr>
 
         <!-- <table style="border-collapse:collapse;" border="1"> -->
-        <table class='table table-striped table table-hover table-dark'>
+        <table class="table table-striped table-hover">
             <tr>
                 <th>社員ID</th><th>名前</th><th>性別</th><th>部署</th><th>役職</th>
             </tr>
