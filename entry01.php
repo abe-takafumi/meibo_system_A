@@ -16,7 +16,7 @@
             $sql->execute();
             $result01 = $sql->fetchAll();
         ?>
-            <table border="1" align="center" style="width: 40%"class="table table-striped table-hover table table-sm">
+            <table border="1" align="center" style="width: 40%"class="table table-striped  table table-sm">
                 <form action="detail01.php" method="post"onsubmit="return check()">
                             <tr>
                                 <th>名前 </th>
