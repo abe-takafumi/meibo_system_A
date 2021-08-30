@@ -37,7 +37,7 @@
             }
         </script>
 
-        <form method='get' action='index.php' name='fm1'>
+        <form method='get' action='index.php' name='fm1' style="text-align:center">
             <?php
                 //検索した文字列や選択した内容を初期値として保存するためのif文
                 $name = "";

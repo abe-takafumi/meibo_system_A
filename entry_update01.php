@@ -103,10 +103,9 @@
                    </td>
                 </tr>
             </table>
-            <p style="text-align:right">
+            <p style="text-align:right" class="d-grid gap-2">
                 <input type="submit" value="編集" class="btn btn-outline-primary" />
-                <input type="hidden" name="member_ID"
-                value="<?php echo $result['member_ID']; ?>" /><br>
+                <input type="hidden" name="member_ID"value="<?php echo $result['member_ID']; ?>" />
                 <input type="reset" class="btn btn-outline-danger">
             </p>
         </form>

@@ -6,8 +6,8 @@
             require_once 'include/def.php';
             require_once 'include/DB.php';
             if(empty($_GET['member_ID']) && empty($_POST['name'])){
-                echo "エラーdesu<br>";
-                echo "<a href='./index.php' style='text-align:right' >トップ画面</a>";
+                echo "このページは社員情報詳細ページです。詳細を載せるためのIDがありません。トップ画面へ遷移してください。<br>";
+                echo "<a href='./index.php' style='text-align:right' >トップ画面へ</a>";
                 exit;
             }else{
                 if(empty($_GET['member_ID'])){
@@ -57,13 +57,13 @@
                     echo "<tr><th>役職</th><td>" . $result['grade_name'] . "</td></tr>";
                 ?>
             </table>
-            <form method='post' action='entry_update01.php' style="text-align:right" >
-                <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary">
+            <form method='post' action='entry_update01.php' class="d-grid gap-2">
+                <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary"/>
                 <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
             </form>
 
-            <form method='post' action='index.php' onsubmit="return check()" style="text-align:right" >
-                <input type="submit" name="delete" value="削除" class="btn btn-outline-warning">
+            <form method='post' action='index.php' onsubmit="return check()" class="d-grid gap-2">
+                <input type="submit" name="delete" value="削除" class="btn btn-outline-warning"/>
                 <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
             </form>
 
