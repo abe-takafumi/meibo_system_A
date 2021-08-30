@@ -89,17 +89,17 @@
                     <option value='4' <?php if($param_section == '4'){echo "selected";} ?> >リーダー</option>
                     <option value='5' <?php if($param_section == '5'){echo "selected";} ?> >メンバー</option>
                 </select><br>
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-3 mx-auto">
             <input type="submit" class="btn btn-info "  value="検索" >
                 </div>
         </form>
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="d-grid gap-2 col-3 mx-auto">
         <button type="button" onclick="resetForm()" class="btn btn-secondary">リセット</button>
         </div>
         <hr>
 
         <!-- <table style="border-collapse:collapse;" border="1"> -->
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover"style="width: 40%" table "table-sm">
             <tr>
                 <th>社員ID</th><th>名前</th><th>性別</th><th>部署</th><th>役職</th>
             </tr>

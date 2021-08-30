@@ -16,7 +16,7 @@
             $sql->execute();
             $result01 = $sql->fetchAll();
         ?>
-            <table border="1" align="center" style="border-collapse:collapse" class="table table-striped table-hover">
+            <table border="1" align="center"  style="width: 40%"class="table table-striped table-hover table table-sm">
                 <form action="detail01.php" method="post"onsubmit="return check()">
                             <tr>
                                 <th>名前 </th>
@@ -73,7 +73,7 @@
                                ?></td>
                             </tr>
             </table>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2 col-4 mx-auto">
                         <input type="submit" class="btn btn-outline-success"value="登録">
                         <input type="reset" class="btn btn-outline-danger"></div>
                 </form>
