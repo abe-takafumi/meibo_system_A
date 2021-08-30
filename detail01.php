@@ -67,14 +67,14 @@
                 ?>
             </table>
             <form method='post' action='entry_update01.php' class="d-grid gap-2">
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-4 mx-auto">
                     <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary"/>
                     <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
                 </div>
             </form>
 
             <form method='post' action='index.php' onsubmit="return check()" class="d-grid gap-2">
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-4 mx-auto">
                     <input type="submit" name="delete" value="削除" class="btn btn-outline-warning"/>
                     <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
                 </div>
