@@ -104,7 +104,7 @@
                 </tr>
             </table>
             <p style="text-align:right" class="d-grid gap-2">
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-4 mx-auto">
                     <input type="submit" value="編集" class="btn btn-outline-primary" />
                     <input type="hidden" name="member_ID"value="<?php echo $result['member_ID']; ?>" />
                     <input type="reset" class="btn btn-outline-danger">
