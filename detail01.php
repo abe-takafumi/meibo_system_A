@@ -45,7 +45,7 @@
 
         ?>
 
-            <table  border="1">
+            <table class='table table-striped table table-hover table-striped'>
                 <?php
                     require 'include/common.php';
                     echo "<tr><th>社員ID</th><td>" . $result['member_ID'] . "</td></tr>";
@@ -57,13 +57,13 @@
                     echo "<tr><th>役職</th><td>" . $result['grade_name'] . "</td></tr>";
                 ?>
             </table>
-            <form method='post' action='entry_update01.php' style="text-align:right">
-                <input type="submit" name="member_ID" value="編集" >
+            <form method='post' action='entry_update01.php' style="text-align:right" >
+                <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary">
                 <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
             </form>
 
-            <form method='post' action='index.php' onsubmit="return check()" style="text-align:right">
-                <input type="submit" name="delete" value="削除" >
+            <form method='post' action='index.php' onsubmit="return check()" style="text-align:right" >
+                <input type="submit" name="delete" value="削除" class="btn btn-outline-warning">
                 <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
             </form>
 

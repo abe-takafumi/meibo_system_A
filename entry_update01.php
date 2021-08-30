@@ -29,7 +29,7 @@
             }
         ?>
         <form method="post" action ="detail01.php" onsubmit="return check()">
-            <table border="1">
+            <table class='table table-striped table table-hover table-striped'>
                 <?php require 'include/common_no0.php'; ?>
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
@@ -72,7 +72,7 @@
                 </tr>
                 <tr>
                    <th>年齢 </th>
-                   <td ><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                   <td ><input type="number" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                 <tr>
                    <th>所属部署</th>
@@ -104,11 +104,10 @@
                 </tr>
             </table>
             <p style="text-align:right">
-                <input type="submit" value="編集" >
-                <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
-            </p>
-            <p style="text-align:right">
-                <input type="reset">
+                <input type="submit" value="編集" class="btn btn-outline-primary" />
+                <input type="hidden" name="member_ID"
+                value="<?php echo $result['member_ID']; ?>" /><br>
+                <input type="reset" class="btn btn-outline-danger">
             </p>
         </form>
         <script type="text/javascript">
