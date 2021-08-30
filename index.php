@@ -81,7 +81,7 @@
                     $param_section = $_GET['grade_ID'];
                 }
             ?>
-                部署：<select name="grade_ID">
+                役職：<select name="grade_ID">
                     <option value='' <?php if($param_section == ''){echo "selected";} ?> >すべて</option>
                     <option value='1' <?php if($param_section == '1'){echo "selected";} ?> >事業部長</option>
                     <option value='2' <?php if($param_section == '2'){echo "selected";} ?> >部長</option>
