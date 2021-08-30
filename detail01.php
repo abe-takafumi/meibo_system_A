@@ -32,6 +32,15 @@
                     }
                 }else{
                     $id = $_GET['member_ID'];
+                    $query_chk = "SELECT * FROM member WHERE member.member_ID = $id";
+                    $sql_chk = $pdo->prepare($query_chk);     // PDOオブジェクトにSQLを渡す
+                    $sql_chk->execute();                      // SQLを実行する
+                    $result_chk = $sql_chk->fetch();
+                    if(empty($result_chk)){
+                        echo "このページは社員情報詳細ページです。ID:".$id."は登録されておりません。トップ画面へ遷移してください。<br>";
+                        echo "<a href='./index.php' style='text-align:right' >トップ画面へ</a>";
+                        exit;
+                    }
                 }
                 $query_str="SELECT member.member_ID,member.name,member.pref,member.seibetu,member.age,grade_master.grade_name,section1_master.section_name
                             FROM member
