@@ -9,7 +9,12 @@
         }
         th { width: 80px; }
         td { width: 450px; }
-
+        .ta_rt{
+            text-align: right;
+        }
+        #header_menu{
+            vertical-align: bottom;
+        }
     </style>
     <title>社員名簿システム</title>
 </head>
