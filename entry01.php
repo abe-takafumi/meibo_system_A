@@ -73,9 +73,9 @@
                                ?></td>
                             </tr>
             </table>
-                        <p style="text-align: right" >
+                        <div class="d-grid gap-2">
                         <input type="submit" class="btn btn-outline-success"value="登録">
-                        <input type="reset" class="btn btn-outline-danger"></p>
+                        <input type="reset" class="btn btn-outline-danger"></div>
                 </form>
                 <script type="text/javascript">
                     const name = document.getElementById('name');
