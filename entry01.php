@@ -73,7 +73,7 @@
                                ?></td>
                             </tr>
             </table>
-                        <p style="text-align: right">
+                        <p style="text-align: right" >
                         <input type="submit" class="btn btn-outline-success"value="登録">
                         <input type="reset" class="btn btn-outline-danger"></p>
                 </form>
