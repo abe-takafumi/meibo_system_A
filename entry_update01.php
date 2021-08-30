@@ -7,8 +7,8 @@
             require_once 'include/DB.php';
             //メンバー
             if(empty($_POST['member_ID'])){
-                echo "エラー";
-                echo "<a class='btn btn-success' href='./index.php' style='text-align:right' >トップ画面</a>";
+                echo "このページは社員情報詳細編集ページです。編集を行うためのIDがありません。トップ画面へ遷移してください。<br>";
+                echo "<a href='./index.php' style='text-align:right' >トップ画面</a>";
                 exit;
             }else{
                 $id=$_POST["member_ID"];
@@ -29,7 +29,7 @@
             }
         ?>
         <form method="post" action ="detail01.php" onsubmit="return check()">
-            <table class='table table-striped table table-hover table-striped'>
+            <table style="width: 40%" class='table table-striped table table-hover table-striped table table-sm'>
                 <?php require 'include/common_no0.php'; ?>
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
@@ -104,9 +104,11 @@
                 </tr>
             </table>
             <p style="text-align:right" class="d-grid gap-2">
-                <input type="submit" value="編集" class="btn btn-outline-primary" />
-                <input type="hidden" name="member_ID"value="<?php echo $result['member_ID']; ?>" />
-                <input type="reset" class="btn btn-outline-danger">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <input type="submit" value="編集" class="btn btn-outline-primary" />
+                    <input type="hidden" name="member_ID"value="<?php echo $result['member_ID']; ?>" />
+                    <input type="reset" class="btn btn-outline-danger">
+                </div>
             </p>
         </form>
         <script type="text/javascript">

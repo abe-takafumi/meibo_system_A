@@ -54,7 +54,7 @@
 
         ?>
 
-            <table class='table table-striped table table-hover table-striped'>
+            <table style="width: 40%" class='table table-striped  table table-hover table-striped　table table-sm'>
                 <?php
                     require 'include/common.php';
                     echo "<tr><th>社員ID</th><td>" . $result['member_ID'] . "</td></tr>";
@@ -67,13 +67,17 @@
                 ?>
             </table>
             <form method='post' action='entry_update01.php' class="d-grid gap-2">
-                <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary"/>
-                <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <input type="submit" name="member_ID" value="編集" class="btn btn-outline-primary"/>
+                    <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
+                </div>
             </form>
 
             <form method='post' action='index.php' onsubmit="return check()" class="d-grid gap-2">
-                <input type="submit" name="delete" value="削除" class="btn btn-outline-warning"/>
-                <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <input type="submit" name="delete" value="削除" class="btn btn-outline-warning"/>
+                    <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
+                </div>
             </form>
 
             <script type="text/javascript">
