@@ -89,7 +89,7 @@
                     <option value='4' <?php if($param_section == '4'){echo "selected";} ?> >リーダー</option>
                     <option value='5' <?php if($param_section == '5'){echo "selected";} ?> >メンバー</option>
                 </select><br>
-                <div class="d-grid gap-2 col-3 mx-auto">
+                <div class="d-grid gap-2 col-3 mx-auto" >
             <input type="submit" class="btn btn-info "  value="検索" >
                 </div>
         </form>
