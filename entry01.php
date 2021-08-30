@@ -75,8 +75,7 @@
             </table>
                         <p style="text-align: right">
                         <input type="submit" class="btn btn-outline-success"value="登録">
-                        <input type="reset" class="btn btn-outline-danger">
-                        </p>
+                        <input type="reset" class="btn btn-outline-danger"></p>
                 </form>
                 <script type="text/javascript">
                     const name = document.getElementById('name');
