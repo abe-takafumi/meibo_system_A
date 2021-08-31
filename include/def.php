@@ -7,7 +7,7 @@
         </svg></h1>
     </td>
     <td class="ta_rt" id="header_menu"><a href="./index.php" style="text-align:right" class="btn btn-outline-primary">トップ画面</a>
-    <a href="./entry01.php" style="text-align:right"class="btn btn-outline-primary">新規社員登録へ</a></td>
+    <a href="./entry01.php" style="text-align:right"class="btn btn-outline-primary">新規社員登録へ</a>&nbsp; </td>
 </table>
 <hr>
 <style>

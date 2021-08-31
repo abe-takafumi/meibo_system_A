@@ -29,7 +29,7 @@
             }
         ?>
         <form method="post" action ="detail01.php" onsubmit="return check()">
-            <table style="width: 40%" class='table table-striped table table-hover table-striped table table-sm'>
+            <table style="width: 40%" class='table table-striped table table-sm'>
                 <?php require 'include/common_no0.php'; ?>
                 <tr>
                     <th>社員ID</th><td><?php echo $result['member_ID'] ?></td>
